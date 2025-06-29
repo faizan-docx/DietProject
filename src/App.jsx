@@ -21,7 +21,7 @@ export default function TheDiet4ULanding() {
             <div className="hidden md:flex items-center space-x-8">
               <a href="#" className="text-black hover:text-black font-medium transition-colors">Home</a>
               <a href="#" className="text-black hover:text-black font-medium transition-colors">Our Programs</a>
-              <a href="#" className="text-black hover:text-black font-medium transition-colors">About</a>
+              <a href="" className="text-black hover:text-black font-medium transition-colors">About</a>
 
               <button className="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors font-medium">
                 Reach us
