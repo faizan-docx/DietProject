@@ -11,16 +11,9 @@ import { Menu, X, Leaf, Heart, Target, Users } from 'lucide-react';
 import ContactPage from "./components/ContactPage";
 import ThankYouPage from './components/ThankYouPage';
 import AboutPage from './components/AboutPage';
+import OurPrograms from './components/OurPrograms'; // ✅ Updated import
 
-// Placeholder component for Programs page
-function ProgramsPage() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 to-orange-100">
-      <h1 className="text-3xl font-bold text-gray-800">Our Programs Page</h1>
-    </div>
-  );
-}
-
+// Landing Page Component
 function TheDiet4ULanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -40,12 +33,11 @@ function TheDiet4ULanding() {
               <Link to="/about" className="text-black hover:text-green-600 font-medium transition-colors">About</Link>
               <button
                 onClick={() => navigate("/contact")}
-                className="group relative inline-block overflow-hidden rounded-md bg-white px-6 py-3 text-sm font-medium uppercase tracking-wide text-black transition-all duration-300 ease-in-out"
+                className="group relative inline-block overflow-hidden rounded-md bg-[#EBEBEB] px-6 py-3 text-sm font-medium uppercase tracking-wide text-black transition-all duration-300 ease-in-out"
               >
-                <span className="absolute inset-0 -translate-x-full transform bg-[#EBEBEB] transition-all duration-500 ease-in-out group-hover:translate-x-0"></span>
+                <span className="absolute inset-0 -translate-x-full transform bg-[#C3BE6E] transition-all duration-500 ease-in-out group-hover:translate-x-0"></span>
                 <span className="relative z-10">Reach us</span>
               </button>
-
             </div>
             <div className="md:hidden">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700 hover:text-green-600">
@@ -69,7 +61,6 @@ function TheDiet4ULanding() {
       {/* Hero Section */}
       <section className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column */}
           <div className="space-y-8">
             <div className="flex items-center space-x-3">
               <h1 className="text-4xl lg:text-5xl font-bold text-green-800 leading-tight">Welcome to thediet4u</h1>
@@ -91,7 +82,6 @@ function TheDiet4ULanding() {
             </div>
           </div>
 
-          {/* Right Column */}
           <div className="relative">
             <div className="bg-gradient-to-br from-green-100 to-orange-100 rounded-3xl p-8 shadow-2xl">
               <div className="bg-white rounded-2xl p-6 shadow-lg">
@@ -138,12 +128,13 @@ function TheDiet4ULanding() {
   );
 }
 
+// App Component with Routing
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<TheDiet4ULanding />} />
-        <Route path="/programs" element={<ProgramsPage />} />
+        <Route path="/programs" element={<OurPrograms />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thankyou" element={<ThankYouPage />} />

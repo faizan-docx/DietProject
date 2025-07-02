@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, GraduationCap, Award } from 'lucide-react';
+import { MapPin, GraduationCap, Award, Mail, Instagram } from 'lucide-react';
 import FatimaImg from '../images/fatima.jpg'; // ✅ Make sure this path is correct
 
 const AboutPage = () => {
@@ -107,18 +107,35 @@ const AboutPage = () => {
           </div>
 
           {/* Bottom Section */}
-          <div className="bg-gray-50 px-8 py-6 border-t">
+          <div className="bg-gray-50 px-8 py-6 border-t relative">
             <div className="text-center">
               <h3 className="font-semibold text-gray-800 mb-3">Get In Touch</h3>
               <p className="text-gray-600 mb-4">
                 Ready to start your journey towards better health? Schedule a consultation today.
               </p>
               <div className="flex justify-center space-x-6">
-              <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 ease-in-out shadow-md hover:shadow-xl transform hover:scale-105 hover:ring-2 hover:ring-green-400 hover:ring-offset-2">
-                Book An Appointment Today
-              </button>
+                <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 ease-in-out shadow-md hover:shadow-xl transform hover:scale-105 hover:ring-2 hover:ring-green-400 hover:ring-offset-2">
+                  Book An Appointment Today
+                </button>
+              </div>
             </div>
 
+            {/* Social Icons */}
+            <div className="absolute bottom-4 right-6 flex items-center space-x-4">
+              <a
+                href="https://www.instagram.com/thediet4u?igsh=MXQ3N21kMjBuM3N4aw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-pink-600 hover:text-pink-700 transition"
+              >
+                <Instagram className="w-6 h-6" />
+              </a>
+              <a
+                href="mailto:info.thediet4u@gmail.com"
+                className="text-green-700 hover:text-green-800 transition"
+              >
+                <Mail className="w-6 h-6" />
+              </a>
             </div>
           </div>
         </div>
