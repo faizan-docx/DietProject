@@ -16,7 +16,7 @@ export default function ContactPage() {
   });
 
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate(); // for redirecting
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -63,15 +63,13 @@ export default function ContactPage() {
 
     if (validateForm()) {
       console.log('Form submitted:', formData);
-
-      // Simulate backend call or store data here if needed
-      navigate('/thankyou'); // Redirect to thank you page
+      navigate('/thankyou');
     }
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-green-50 to-blue-50 py-8 px-4 flex items-center justify-center">
-      <div className="max-w-2xl w-full h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-xl p-6 md:p-8 scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-green-100">
+    <div className="w-screen h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
+      <div className="w-full max-w-4xl h-full bg-white rounded-2xl shadow-xl p-6 md:p-8 overflow-y-auto scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-green-100">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Let's Get to Know You!</h1>
           <p className="text-lg text-gray-600">
@@ -79,7 +77,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Phone Number */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -89,16 +87,17 @@ export default function ContactPage() {
               <div className="flex items-center px-3 bg-gray-100 border border-r-0 border-gray-300 rounded-l-lg">
                 <span className="text-gray-700 font-medium">+91</span>
               </div>
-              <input
-                type="tel"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleInputChange}
-                placeholder="Enter your Phone Number"
-                className={`flex-1 px-4 py-3 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                  errors.phoneNumber ? 'border-red-500' : 'border-gray-300'
-                }`}
-              />
+           <input
+              type="tel"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleInputChange}
+              placeholder="Enter your Phone Number"
+              className={`flex-1 px-4 py-3 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800 ${
+                errors.phoneNumber ? 'border-red-500' : 'border-gray-300'
+              }`}
+            />
+
             </div>
             {errors.phoneNumber && <p className="text-red-500 text-sm mt-1">{errors.phoneNumber}</p>}
           </div>
@@ -107,16 +106,17 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">First Name <span className="text-red-500">*</span></label>
-              <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                placeholder="Enter your First Name"
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                  errors.firstName ? 'border-red-500' : 'border-gray-300'
-                }`}
-              />
+            <input
+              type="text"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              placeholder="Enter your First Name"
+              className={`w-full px-4 py-3 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                errors.firstName ? 'border-red-500' : 'border-gray-300'
+              }`}
+            />
+
               {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
             </div>
 
@@ -128,7 +128,7 @@ export default function ContactPage() {
                 value={formData.lastName}
                 onChange={handleInputChange}
                 placeholder="Enter your Last Name"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-3 border border-gray-300 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               />
             </div>
           </div>
@@ -142,7 +142,7 @@ export default function ContactPage() {
               value={formData.address}
               onChange={handleInputChange}
               placeholder="Enter your Address"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full px-4 py-3 border border-gray-300 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             />
           </div>
 
@@ -155,7 +155,7 @@ export default function ContactPage() {
               value={formData.city}
               onChange={handleInputChange}
               placeholder="Enter your City"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500"
             />
           </div>
 
@@ -172,7 +172,7 @@ export default function ContactPage() {
                 value={formData.whatsappNumber}
                 onChange={handleInputChange}
                 placeholder="Enter your WhatsApp Number"
-                className={`flex-1 px-4 py-3 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                className={`flex-1 px-4 py-3 text-gray-800 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
                   errors.whatsappNumber ? 'border-red-500' : 'border-gray-300'
                 }`}
               />
@@ -189,7 +189,7 @@ export default function ContactPage() {
               value={formData.email}
               onChange={handleInputChange}
               placeholder="Enter your Email"
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
+              className={`w-full px-4 py-3 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 ${
                 errors.email ? 'border-red-500' : 'border-gray-300'
               }`}
             />
@@ -204,7 +204,7 @@ export default function ContactPage() {
                 name="gender"
                 value={formData.gender}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-3 border border-gray-300 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               >
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
@@ -221,7 +221,7 @@ export default function ContactPage() {
                 name="dateOfBirth"
                 value={formData.dateOfBirth}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-3 border border-gray-300 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               />
             </div>
           </div>
@@ -233,16 +233,16 @@ export default function ContactPage() {
               name="remarks"
               value={formData.remarks}
               onChange={handleInputChange}
-              placeholder="Health goals, preferences, medical info..."
+              placeholder="Any additional information or specific requirements"
               rows="3"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+              className="w-full px-4 py-3 border border-gray-300 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
             />
           </div>
 
           {/* Submit */}
           <div className="pt-2">
             <button
-              onClick={handleSubmit}
+              type="submit"
               className="w-full bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold py-4 px-6 rounded-lg hover:from-green-600 hover:to-blue-600 transform hover:scale-105 transition-all duration-200 shadow-lg"
             >
               Submit Enquiry
@@ -252,7 +252,7 @@ export default function ContactPage() {
           <p className="text-sm text-gray-500 text-center">
             Fields marked with <span className="text-red-500">*</span> are required
           </p>
-        </div>
+        </form>
       </div>
     </div>
   );

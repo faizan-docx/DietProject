@@ -1,14 +1,14 @@
 import React from 'react';
 import { MapPin, GraduationCap, Award } from 'lucide-react';
-import FatimaImg from '../images/fatima.jpg'; // ✅ Import your image here
+import FatimaImg from '../images/fatima.jpg'; // ✅ Make sure this path is correct
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 py-12 px-4">
-      <div className="max-w-6xl mx-auto">
+    <div className="w-screen min-h-screen bg-gradient-to-br from-blue-50 to-green-50 py-12 px-4 flex flex-col">
+      <div className="max-w-6xl mx-auto flex-grow">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">About Dr. Kaneez Fatima</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">About Dt. Kaneez Fatima</h1>
           <div className="w-24 h-1 bg-green-500 mx-auto rounded-full"></div>
         </div>
 
@@ -18,7 +18,7 @@ const AboutPage = () => {
             {/* Left Side - Content */}
             <div className="space-y-6">
               <div>
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Dr. Kaneez Fatima</h2>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">Dt. Kaneez Fatima</h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Dedicated Nutritionist & Dietitian committed to helping individuals achieve optimal health through personalized nutrition guidance and evidence-based dietary interventions.
                 </p>
@@ -98,7 +98,7 @@ const AboutPage = () => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h4 className="font-semibold text-gray-800 mb-2">Dr. Kaneez Fatima</h4>
+                    <h4 className="font-semibold text-gray-800 mb-2">Dt. Kaneez Fatima</h4>
                     <p className="text-sm text-gray-600">Nutrition & Dietetics Specialist</p>
                   </div>
                 </div>
@@ -114,13 +114,11 @@ const AboutPage = () => {
                 Ready to start your journey towards better health? Schedule a consultation today.
               </p>
               <div className="flex justify-center space-x-6">
-                <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-medium transition-colors">
-                  Book Appointment
-                </button>
-                <button className="border border-green-500 text-green-500 hover:bg-green-50 px-6 py-2 rounded-full font-medium transition-colors">
-                  Learn More
-                </button>
-              </div>
+              <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 ease-in-out shadow-md hover:shadow-xl transform hover:scale-105 hover:ring-2 hover:ring-green-400 hover:ring-offset-2">
+                Book An Appointment Today
+              </button>
+            </div>
+
             </div>
           </div>
         </div>
