@@ -68,14 +68,14 @@ function TheDiet4ULanding() {
   }, []);
 
   const downloadBrochure = () => {
-    // Create a temporary anchor element
-    const link = document.createElement('a');
-    link.href = '/Brochure/Brochure.pdf';
-    link.download = 'TheDiet4U_Nutrition_Programs_Brochure.pdf'; // This will be the filename when downloaded
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const link = document.createElement('a');
+  link.href = '/Brochure.pdf'; 
+  link.download = 'Brochure.pdf'; 
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 
   const programs = [
     {
