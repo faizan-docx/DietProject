@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, GraduationCap, Award, Mail, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import FatimaImg from '../images/fatima.jpg'; // ✅ Make sure this path is correct
 
 const AboutPage = () => {
@@ -114,9 +115,12 @@ const AboutPage = () => {
                 Ready to start your journey towards better health? Schedule a consultation today.
               </p>
               <div className="flex justify-center space-x-6">
-                <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 ease-in-out shadow-md hover:shadow-xl transform hover:scale-105 hover:ring-2 hover:ring-green-400 hover:ring-offset-2">
-                  Book An Appointment Today
-                </button>
+                <Link
+                to="/contact"
+                className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 ease-in-out shadow-md hover:shadow-xl transform hover:scale-105 hover:ring-2 hover:ring-green-400 hover:ring-offset-2 text-center inline-block"
+              >
+                Book An Appointment Today
+              </Link>
               </div>
             </div>
 

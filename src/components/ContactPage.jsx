@@ -14,7 +14,7 @@ export default function ContactPage() {
     dateOfBirth: '',
     remarks: ''
   });
-
+  
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 

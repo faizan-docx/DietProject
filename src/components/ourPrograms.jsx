@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';  
 import { 
   Heart, 
   Users, 
@@ -123,13 +124,12 @@ export default function TheDiet4U() {
             </div>
             
             <div className="hidden md:flex space-x-8">
-              <a href="#programs" className="text-gray-700 hover:text-emerald-600 transition-colors">Programs</a>
-              <a href="#specialized" className="text-gray-700 hover:text-emerald-600 transition-colors">Specialized</a>
-              <a href="#lifestyle" className="text-gray-700 hover:text-emerald-600 transition-colors">Lifestyle</a>
-              <a href="#about" className="text-gray-700 hover:text-emerald-600 transition-colors">About</a>
-              <a href="#contact" className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all">
+              <Link 
+                to="/contact" 
+                className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all"
+              >
                 Consult Now
-              </a>
+              </Link>
             </div>
 
             <button 
@@ -145,13 +145,12 @@ export default function TheDiet4U() {
         {isMenuOpen && (
           <div className="md:hidden bg-white/95 backdrop-blur-md border-t">
             <div className="px-4 py-2 space-y-2">
-              <a href="#programs" className="block py-2 text-gray-700 hover:text-emerald-600">Programs</a>
-              <a href="#specialized" className="block py-2 text-gray-700 hover:text-emerald-600">Specialized</a>
-              <a href="#lifestyle" className="block py-2 text-gray-700 hover:text-emerald-600">Lifestyle</a>
-              <a href="#about" className="block py-2 text-gray-700 hover:text-emerald-600">About</a>
-              <a href="#contact" className="block py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 rounded-full text-center">
-                Consult Now
-              </a>
+              <Link 
+              to="/contact" 
+              className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all"
+            >
+              Consult Now
+            </Link>
             </div>
           </div>
         )}
@@ -178,16 +177,6 @@ export default function TheDiet4U() {
               Personalized, goal-oriented nutrition programs based on evidence-backed science. 
               Transform your health, appearance, and lifestyle with our expert guidance.
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center">
-                Start Your Transformation
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
-              <button className="border-2 border-emerald-500 text-emerald-600 px-8 py-4 rounded-full font-semibold hover:bg-emerald-50 transition-colors">
-                Free Consultation
-              </button>
-            </div>
           </div>
         </div>
       </section>
@@ -220,9 +209,6 @@ export default function TheDiet4U() {
                       </li>
                     ))}
                   </ul>
-                  <button className="mt-6 w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all">
-                    Learn More
-                  </button>
                 </div>
               </div>
             ))}
@@ -342,18 +328,7 @@ export default function TheDiet4U() {
             Choose health. Choose YOU. ✨
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center">
-              <Phone className="mr-2 w-5 h-5" />
-              Book Consultation
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-emerald-600 transition-all flex items-center">
-              <Mail className="mr-2 w-5 h-5" />
-              Fill Enquiry Form
-            </button>
-          </div>
-          
-          <div className="mt-8 text-emerald-100">
+          <div className="text-emerald-100">
             <p>Join 300+ satisfied clients who transformed their lives with us</p>
           </div>
         </div>
@@ -404,8 +379,6 @@ export default function TheDiet4U() {
                 <li>About Us</li>
                 <li>Success Stories</li>
                 <li>Contact</li>
-                <li>Book Consultation</li>
-                <li>Enquiry Form</li>
               </ul>
             </div>
           </div>
