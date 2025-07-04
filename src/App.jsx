@@ -6,18 +6,13 @@ import {
   Link,
   useNavigate
 } from "react-router-dom";
-import { Menu, X, Leaf, Heart, Target, Users, Star, CheckCircle, ArrowRight, Sparkles, Award, Zap } from 'lucide-react';
+import { Menu, X, Leaf, Heart, Target, Users, Star, CheckCircle, ArrowRight, Download, ArrowDown, Sparkles, Award, Zap, Phone, Mail } from 'lucide-react';
 
 import OurPrograms from './components/OurPrograms'; 
 import ContactPage from "./components/ContactPage";
 import ThankYouPage from './components/ThankYouPage';
 import AboutPage from './components/AboutPage';
 import FitnessProgramCards from './components/FitnessProgramCards';
-
-
-
-
-
 
 // Floating Animation Component
 function FloatingElement({ children, delay = 0, duration = 3 }) {
@@ -72,271 +67,298 @@ function TheDiet4ULanding() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <div className="min-h-screen w-screen bg-gradient-to-br from-green-50 via-white to-orange-50 flex flex-col justify-between overflow-x-hidden relative">
-      {/* Animated Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-green-200 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute top-60 right-20 w-24 h-24 bg-orange-200 rounded-full opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-40 left-20 w-40 h-40 bg-yellow-200 rounded-full opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/3 right-1/4 w-20 h-20 bg-blue-200 rounded-full opacity-15 animate-pulse" style={{ animationDelay: '3s' }}></div>
-      </div>
+  const downloadBrochure = () => {
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = '/Brochure/Brochure.pdf';
+    link.download = 'TheDiet4U_Nutrition_Programs_Brochure.pdf'; // This will be the filename when downloaded
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
+  const programs = [
+    {
+      emoji: "🔥",
+      title: "Weight Loss Program",
+      description: "Shed those extra kilos with a sustainable and holistic approach.",
+      color: "from-red-500 to-orange-500"
+    },
+    {
+      emoji: "🏋️‍♂️",
+      title: "Weight Gain Program",
+      description: "Struggling to gain healthy weight or muscle? This plan is for you.",
+      color: "from-blue-500 to-purple-500"
+    },
+    {
+      emoji: "🧘",
+      title: "Detox & Cleanse",
+      description: "A gentle reset for your body and mind.",
+      color: "from-green-500 to-teal-500"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen w-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex flex-col justify-between overflow-x-hidden relative">
       {/* Navigation */}
-      <nav className={`bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-all duration-300 ${scrollY > 50 ? 'py-2 shadow-xl' : 'py-0'}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${
+        scrollY > 50 ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2 group cursor-pointer">
-              <Sparkles className="h-6 w-6 text-[#C3BE6E] group-hover:animate-spin transition-transform duration-300" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-[#C3BE6E] to-green-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
+              <Leaf className="h-8 w-8 text-emerald-500 group-hover:animate-spin transition-transform duration-500" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
                 thediet4u
               </span>
             </div>
             
-            <div className="hidden md:flex items-center space-x-8">
-              <Link to="/" className="text-gray-800 hover:text-green-600 font-medium transition-all duration-300 hover:scale-105 relative group">
-                Home
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-600 to-[#C3BE6E] transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link to="/programs" className="text-gray-800 hover:text-green-600 font-medium transition-all duration-300 hover:scale-105 relative group">
-                Our Programs
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-600 to-[#C3BE6E] transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link to="/about" className="text-gray-800 hover:text-green-600 font-medium transition-all duration-300 hover:scale-105 relative group">
-                About
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-600 to-[#C3BE6E] transition-all duration-300 group-hover:w-full"></span>
-              </Link>
+            <div className="hidden md:flex space-x-8">
+              <Link to="/" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Home</Link>
+              <Link to="/programs" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Programs</Link>
+              <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About</Link>
               <button
                 onClick={() => navigate("/contact")}
-                className="group relative inline-block overflow-hidden rounded-xl bg-gradient-to-r from-[#EBEBEB] to-gray-200 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-black transition-all duration-300 ease-in-out hover:shadow-lg transform hover:scale-105"
+                className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-medium"
               >
-                <span className="absolute inset-0 -translate-x-full transform bg-gradient-to-r from-[#C3BE6E] to-green-500 transition-all duration-500 ease-in-out group-hover:translate-x-0"></span>
-                <span className="relative z-10 flex items-center space-x-2">
-                  <span>Reach us</span>
-                  <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
+                Contact Us
               </button>
             </div>
-            
-            <div className="md:hidden">
-              <button 
-                onClick={() => setIsMenuOpen(!isMenuOpen)} 
-                className="text-gray-700 hover:text-green-600 p-2 rounded-lg hover:bg-green-50 transition-all duration-300"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+
+            <button 
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white/95 backdrop-blur-md border-t animate-slideDown">
+            <div className="px-4 py-2 space-y-2">
+              <Link to="/" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-700 hover:text-emerald-600">Home</Link>
+              <Link to="/programs" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-700 hover:text-emerald-600">Programs</Link>
+              <Link to="/about" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-700 hover:text-emerald-600">About</Link>
+              <button onClick={() => { setIsMenuOpen(false); navigate("/contact"); }} className="w-full text-left bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all font-medium mt-2">
+                Contact Us
               </button>
             </div>
           </div>
-          
-          {isMenuOpen && (
-            <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 animate-slideDown">
-              <div className="px-2 pt-2 pb-3 space-y-2">
-                <Link to="/" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg font-medium transition-all duration-300">Home</Link>
-                <Link to="/programs" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg font-medium transition-all duration-300">Our Programs</Link>
-                <Link to="/about" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg font-medium transition-all duration-300">About</Link>
-                <button onClick={() => { setIsMenuOpen(false); navigate("/contact"); }} className="w-full text-left bg-gradient-to-r from-green-600 to-green-700 text-white px-4 py-3 rounded-lg hover:shadow-lg transition-all duration-300 font-medium mt-2 transform hover:scale-105">Reach us</button>
-              </div>
-            </div>
-          )}
-        </div>
+        )}
       </nav>
 
       {/* Hero Section */}
-      <section className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-8 animate-fadeInLeft">
-            {/* Trust Indicators */}
-            <div className="flex items-center space-x-4 flex-wrap gap-2">
-              <div className="flex space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-yellow-400 fill-current animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
-                ))}
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-8 animate-fadeInLeft">
+              {/* Trust Indicators */}
+              <div className="inline-flex items-center bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium">
+                <Star className="w-4 h-4 mr-2" />
+                1000+ Happy Clients Transformed
               </div>
-              <span className="text-sm text-gray-600 font-medium flex items-center space-x-1">
-                <Award className="h-4 w-4 text-green-600" />
-                <span>Trusted by 1000+ clients</span>
-              </span>
-            </div>
-            
-            {/* Main Heading */}
-            <div className="space-y-4">
-              <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-green-800 via-green-600 to-green-500 bg-clip-text text-transparent leading-tight">
-                Welcome to thediet4u
-              </h1>
-              <div className="h-1 w-24 bg-gradient-to-r from-[#C3BE6E] to-green-500 rounded-full animate-pulse"></div>
-            </div>
-            
-            {/* Subtitle */}
-            <h2 className="text-2xl lg:text-4xl font-semibold bg-gradient-to-r from-orange-600 via-red-500 to-pink-500 bg-clip-text text-transparent">
-              Your Path to a Healthier You
-            </h2>
-            
-            {/* Description */}
-            <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-              Whether you're looking to lose weight, gain muscle, manage a condition, or simply eat healthier — we've got the right plan for you.
-            </p>
-            
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={() => navigate("/contact")}
-                className="group bg-gradient-to-r from-black via-gray-900 to-black text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 relative overflow-hidden"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                <span className="relative z-10">Contact us</span>
-                <ArrowRight className="h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-              </button>
               
-              <button
-                onClick={() => navigate("/programs")}
-                className="group border-2 border-green-600 text-green-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-green-600 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
-              >
-                <span>View Programs</span>
-                <Target className="h-5 w-5 group-hover:animate-pulse" />
-              </button>
-            </div>
-            
-            {/* Stats Section */}
-            <div className="grid grid-cols-3 gap-6 pt-8">
-              <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
-                <div className="text-2xl font-bold text-green-600 group-hover:animate-bounce">
-                  <StatsCounter end={1000} suffix="+" />
-                </div>
-                <div className="text-sm text-gray-600 font-medium">Happy Clients</div>
+              {/* Main Heading */}
+              <div className="space-y-4">
+                <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                  Your Journey to{' '}
+                  <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                    Better Health
+                  </span>{' '}
+                  Starts Here
+                </h1>
+                <div className="h-1 w-24 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full"></div>
               </div>
-              <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
-                <div className="text-2xl font-bold text-orange-600 group-hover:animate-bounce">
-                  <StatsCounter end={50} suffix="+" />
-                </div>
-                <div className="text-sm text-gray-600 font-medium">Programs</div>
-              </div>
-              <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
-                <div className="text-2xl font-bold text-blue-600 group-hover:animate-bounce">
-                  <StatsCounter end={95} suffix="%" />
-                </div>
-                <div className="text-sm text-gray-600 font-medium">Success Rate</div>
-              </div>
-            </div>
-            
-            {/* Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8">
-              <div className="flex items-center space-x-3 p-4 bg-white/40 backdrop-blur-sm rounded-xl hover:bg-white/60 transition-all duration-300 group transform hover:scale-105">
-                <Heart className="h-6 w-6 text-red-500 group-hover:animate-pulse" />
-                <span className="text-gray-700 font-medium">Heart Healthy</span>
-                <CheckCircle className="h-4 w-4 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-              <div className="flex items-center space-x-3 p-4 bg-white/40 backdrop-blur-sm rounded-xl hover:bg-white/60 transition-all duration-300 group transform hover:scale-105">
-                <Target className="h-6 w-6 text-green-500 group-hover:animate-pulse" />
-                <span className="text-gray-700 font-medium">Goal Focused</span>
-                <CheckCircle className="h-4 w-4 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-              <div className="flex items-center space-x-3 p-4 bg-white/40 backdrop-blur-sm rounded-xl hover:bg-white/60 transition-all duration-300 group transform hover:scale-105">
-                <Users className="h-6 w-6 text-blue-500 group-hover:animate-pulse" />
-                <span className="text-gray-700 font-medium">Expert Support</span>
-                <CheckCircle className="h-4 w-4 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-            </div>
-          </div>
-
-          {/* Right Visual Section */}
-          <div className="relative animate-fadeInRight">
-            <FloatingElement delay={0} duration={4}>
-              <div className="bg-gradient-to-br from-green-100 via-white to-orange-100 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden">
-                {/* Animated shimmer effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer"></div>
+              
+              {/* Description */}
+              <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
+                Personalized, goal-oriented nutrition programs based on evidence-backed science. 
+                Transform your health, appearance, and lifestyle with our expert guidance.
+              </p>
+              
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button
+                  onClick={() => navigate("/programs")}
+                  className="group bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center space-x-2"
+                >
+                  <span>View Programs</span>
+                  <ArrowRight className="h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
                 
-                <div className="bg-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                  <div className="relative mb-6">
-                    <div className="w-full h-64 bg-gradient-to-br from-green-200 via-green-300 to-green-400 rounded-2xl flex items-center justify-center overflow-hidden relative">
-                      {/* Animated background dots */}
-                      <div className="absolute inset-0 opacity-20">
-                        <div className="absolute top-4 left-4 w-6 h-6 bg-white rounded-full animate-bounce"></div>
-                        <div className="absolute top-8 right-8 w-4 h-4 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
-                        <div className="absolute bottom-6 left-12 w-5 h-5 bg-white rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
-                        <div className="absolute bottom-12 right-6 w-3 h-3 bg-white rounded-full animate-bounce" style={{ animationDelay: '1.5s' }}></div>
-                      </div>
-                      
-                      <div className="w-48 h-48 bg-white rounded-full shadow-inner flex items-center justify-center relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-green-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div className="text-center relative z-10">
-                          <div className="text-6xl mb-2 animate-pulse">🥗</div>
-                          <p className="text-sm text-gray-600 font-medium">Fresh & Nutritious</p>
+                <button
+                  onClick={downloadBrochure}
+                  className="group border-2 border-emerald-500 text-emerald-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-50 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center space-x-2"
+                >
+                  <span>Download Brochure</span>
+                  <Download className="h-5 w-5" />
+                </button>
+              </div>
+              
+              {/* Stats Section */}
+              <div className="grid grid-cols-3 gap-6 pt-8">
+                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
+                  <div className="text-2xl font-bold text-emerald-600 group-hover:animate-bounce">
+                    <StatsCounter end={1000} suffix="+" />
+                  </div>
+                  <div className="text-sm text-gray-600 font-medium">Happy Clients</div>
+                </div>
+                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
+                  <div className="text-2xl font-bold text-teal-600 group-hover:animate-bounce">
+                    <StatsCounter end={50} suffix="+" />
+                  </div>
+                  <div className="text-sm text-gray-600 font-medium">Programs</div>
+                </div>
+                <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
+                  <div className="text-2xl font-bold text-blue-600 group-hover:animate-bounce">
+                    <StatsCounter end={95} suffix="%" />
+                  </div>
+                  <div className="text-sm text-gray-600 font-medium">Success Rate</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Visual Section */}
+            <div className="relative animate-fadeInRight">
+              <FloatingElement delay={0} duration={4}>
+                <div className="bg-gradient-to-br from-emerald-100 via-white to-teal-100 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden">
+                  <div className="bg-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                    <div className="relative mb-6">
+                      <div className="w-full h-64 bg-gradient-to-br from-emerald-200 via-teal-300 to-teal-400 rounded-2xl flex items-center justify-center overflow-hidden relative">
+                        <div className="text-white text-center p-4">
+                          <div className="text-4xl mb-4">🌿</div>
+                          <h3 className="text-2xl font-bold mb-2">Personalized Diet Plans</h3>
+                          <p className="text-emerald-100">Tailored to your unique needs and goals</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  
-                  <div className="grid grid-cols-4 gap-4">
-                    {[
-                      { emoji: '🥑', name: 'Avocado', color: 'green' },
-                      { emoji: '🍅', name: 'Tomato', color: 'red' },
-                      { emoji: '🥒', name: 'Cucumber', color: 'green' },
-                      { emoji: '🥕', name: 'Carrot', color: 'orange' }
-                    ].map((item, index) => (
-                      <div key={index} className="text-center group cursor-pointer">
-                        <div className="text-3xl mb-1 transform group-hover:scale-125 transition-transform duration-300 group-hover:animate-bounce">
-                          {item.emoji}
-                        </div>
-                        <p className="text-xs text-gray-600 group-hover:font-semibold transition-all duration-300">
-                          {item.name}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
                 </div>
-              </div>
-            </FloatingElement>
-            
-            {/* Enhanced floating elements */}
-            <FloatingElement delay={1} duration={3}>
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-orange-200 to-orange-300 rounded-full opacity-70 shadow-lg"></div>
-            </FloatingElement>
-            
-            <FloatingElement delay={2} duration={5}>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-green-200 to-green-300 rounded-full opacity-70 shadow-lg"></div>
-            </FloatingElement>
-            
-            <FloatingElement delay={0.5} duration={4}>
-              <div className="absolute top-1/2 -left-8 w-12 h-12 bg-gradient-to-br from-yellow-200 to-yellow-300 rounded-full opacity-60 shadow-lg"></div>
-            </FloatingElement>
-            
-            <FloatingElement delay={1.5} duration={3.5}>
-              <div className="absolute top-1/4 -right-6 w-8 h-8 bg-gradient-to-br from-blue-200 to-blue-300 rounded-full opacity-50 shadow-lg"></div>
-            </FloatingElement>
+              </FloatingElement>
+            </div>
           </div>
         </div>
       </section>
-   
-     <div><FitnessProgramCards /> </div>
-      
+
+      {/* Fitness Program Cards Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <FitnessProgramCards />
+        </div>
+      </section>
+
+      {/* Programs Preview Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-emerald-50 to-teal-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Featured Programs
+            </h2>
+            <p className="text-xl text-gray-600">
+              Goal-based programs to transform your health, appearance, and lifestyle
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {programs.map((program, index) => (
+              <div key={index} className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                <div className={`absolute inset-0 bg-gradient-to-br ${program.color} opacity-5 group-hover:opacity-10 transition-opacity`}></div>
+                <div className="p-8 relative">
+                  <div className="text-4xl mb-4">{program.emoji}</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{program.title}</h3>
+                  <p className="text-gray-600 mb-6">{program.description}</p>
+                  <button 
+                    onClick={() => navigate("/programs")}
+                    className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-emerald-600 to-teal-600">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Start Your Journey?
+          </h2>
+          <p className="text-xl text-emerald-100 mb-8">
+            Choose health. Choose YOU. ✨
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button 
+              onClick={downloadBrochure}
+              className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center"
+            >
+              <Download className="mr-2 w-5 h-5" />
+              Download Brochure
+            </button>
+            <button 
+              onClick={() => navigate("/programs")}
+              className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-emerald-600 transition-all flex items-center"
+            >
+              <ArrowRight className="mr-2 w-5 h-5" />
+              View All Programs
+            </button>
+          </div>
+        </div>
+      </section>
 
       {/* Enhanced Footer */}
-      <footer className="bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white py-12 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-green-900/10 via-transparent to-orange-900/10"></div>
-        
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-4 -left-4 w-20 h-20 bg-green-500/10 rounded-full animate-pulse"></div>
-          <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-orange-500/10 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0 group">
-              <Leaf className="h-8 w-8 text-green-400 group-hover:animate-spin transition-transform duration-500" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-green-400 via-[#C3BE6E] to-orange-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
-                thediet4u
-              </span>
-            </div>
-            <div className="text-center md:text-right space-y-2">
-              <p className="text-gray-400 hover:text-white transition-colors duration-300">
-                © 2025 TheDiet4U. All rights reserved.
+      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="col-span-2">
+              <div className="flex items-center space-x-2 mb-4">
+                <Leaf className="h-8 w-8 text-emerald-500" />
+                <span className="text-2xl font-bold">thediet4u</span>
+              </div>
+              <p className="text-gray-400 mb-4">
+                Personalized nutrition programs designed to transform your health, 
+                appearance, and lifestyle. Expert guidance backed by science.
               </p>
-              <p className="text-transparent bg-gradient-to-r from-green-400 via-[#C3BE6E] to-orange-400 bg-clip-text font-medium animate-pulse">
-                Eat Better. Feel Better. Live Better.
-              </p>
+              <div className="flex space-x-4">
+                <div className="bg-emerald-600 w-10 h-10 rounded-full flex items-center justify-center">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div className="bg-emerald-600 w-10 h-10 rounded-full flex items-center justify-center">
+                  <Mail className="w-5 h-5" />
+                </div>
+              </div>
             </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Programs</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>Weight Loss</li>
+                <li>Weight Gain</li>
+                <li>Detox & Cleanse</li>
+                <li>PCOS/PCOD</li>
+                <li>Diabetes Management</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link to="/" className="hover:text-emerald-400">Home</Link></li>
+                <li><Link to="/programs" className="hover:text-emerald-400">Programs</Link></li>
+                <li><Link to="/about" className="hover:text-emerald-400">About</Link></li>
+                <li><Link to="/contact" className="hover:text-emerald-400">Contact</Link></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 thediet4u. All rights reserved. | Designed for your wellness journey</p>
           </div>
         </div>
       </footer>
@@ -376,15 +398,6 @@ function TheDiet4ULanding() {
           }
         }
         
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%) skewX(-12deg);
-          }
-          100% {
-            transform: translateX(200%) skewX(-12deg);
-          }
-        }
-        
         .animate-fadeInLeft {
           animation: fadeInLeft 0.8s ease-out;
         }
@@ -396,16 +409,12 @@ function TheDiet4ULanding() {
         .animate-slideDown {
           animation: slideDown 0.3s ease-out;
         }
-        
-        .animate-shimmer {
-          animation: shimmer 2s infinite;
-        }
       `}</style>
     </div>
   );
 }
 
-// App Component with Routing (unchanged)
+// App Component with Routing
 export default function App() {
   return (
     <Router>
@@ -415,9 +424,6 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thankyou" element={<ThankYouPage />} />
-        <Route path="/programs" element={<FitnessProgramCards />} />
-
-
       </Routes>
     </Router>
   );
