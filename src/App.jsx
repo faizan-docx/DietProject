@@ -76,27 +76,28 @@ function TheDiet4ULanding() {
   document.body.removeChild(link);
 };
 
+const programs = [
+  {
+    emoji: "₹200💰",
+    title: "General Enquiry",
+    description: "Ask diet or health-related questions and get expert advice.",
+    color: "from-yellow-400 to-orange-400"
+  },
+  {
+    emoji: "₹500💰",
+    title: "1-Month Diet Plan",
+    description: "Customized diet chart + unlimited queries for one month.",
+    color: "from-green-500 to-emerald-500"
+  },
+  {
+    emoji: "₹1000💰",
+    title: "3-Month Diet Plan",
+    description: "Comprehensive plan with support and reviews for 3 months.",
+    color: "from-purple-500 to-pink-500"
+  }
+];
 
-  const programs = [
-    {
-      emoji: "🔥",
-      title: "Weight Loss Program",
-      description: "Shed those extra kilos with a sustainable and holistic approach.",
-      color: "from-red-500 to-orange-500"
-    },
-    {
-      emoji: "🏋️‍♂️",
-      title: "Weight Gain Program",
-      description: "Struggling to gain healthy weight or muscle? This plan is for you.",
-      color: "from-blue-500 to-purple-500"
-    },
-    {
-      emoji: "🧘",
-      title: "Detox & Cleanse",
-      description: "A gentle reset for your body and mind.",
-      color: "from-green-500 to-teal-500"
-    }
-  ];
+
 
   return (
     <div className="min-h-screen w-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex flex-col justify-between overflow-x-hidden relative">
@@ -272,12 +273,7 @@ function TheDiet4ULanding() {
                   <div className="text-4xl mb-4">{program.emoji}</div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">{program.title}</h3>
                   <p className="text-gray-600 mb-6">{program.description}</p>
-                  <button 
-                    onClick={() => navigate("/programs")}
-                    className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
-                  >
-                    Learn More
-                  </button>
+                 
                 </div>
               </div>
             ))}
