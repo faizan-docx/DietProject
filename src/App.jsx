@@ -118,11 +118,11 @@ function TheDiet4ULanding() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2 group cursor-pointer">
-              <Leaf className="h-8 w-8 text-emerald-500 group-hover:animate-spin transition-transform duration-500" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
-                thediet4u
-              </span>
-            </div>
+            <Leaf className="h-8 w-8 text-emerald-500 animate-spin-continuous" />
+            <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
+              thediet4u
+            </span>
+          </div>
             
             <div className="hidden md:flex space-x-8">
               <Link to="/" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Home</Link>
@@ -405,6 +405,14 @@ function TheDiet4ULanding() {
 
       {/* Custom Styles */}
       <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        .animate-spin-continuous {
+          animation: spin 4s linear infinite;
+        }
         @keyframes fadeInLeft {
           from {
             opacity: 0;

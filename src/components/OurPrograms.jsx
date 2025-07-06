@@ -114,15 +114,13 @@ export default function TheDiet4U() {
         scrollY > 50 ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">🌿</span>
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                TheDiet4U
-              </span>
-            </div>
+                  <div className="flex justify-between items-center py-4">
+                  <div className="flex items-center space-x-2 group cursor-pointer">
+          <Leaf className="h-8 w-8 text-emerald-500 animate-spin-continuous" />
+          <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
+            thediet4u
+          </span>
+        </div>
             
             <div className="hidden md:flex space-x-8">
               <Link 
@@ -286,7 +284,7 @@ export default function TheDiet4U() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              🌟 Why Choose TheDiet4U?
+              🌟 Why Choose theDiet4U?
             </h2>
           </div>
 
@@ -334,6 +332,16 @@ export default function TheDiet4U() {
           </div>
         </div>
       </section>
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        .animate-spin-continuous {
+          animation: spin 4s linear infinite;
+        }
+      `}</style>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
@@ -386,10 +394,12 @@ export default function TheDiet4U() {
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 TheDiet4U. All rights reserved. | Designed for your wellness journey</p>
+            <p>&copy; 2025 theDiet4U. All rights reserved. | Designed for your wellness journey</p>
           </div>
         </div>
       </footer>
     </div>
+    
   );
+  
 }
