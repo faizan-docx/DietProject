@@ -158,19 +158,27 @@ function TheDiet4ULanding() {
                 Home
               </Link>
               <Link 
-                to="/programs" 
+                to="/OurPrograms" 
                 onClick={delayedAction(() => setIsMenuOpen(false))} 
                 className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
               >
                 Programs
               </Link>
               <Link 
-                to="/about" 
+                to="/AboutPage" 
                 onClick={delayedAction(() => setIsMenuOpen(false))} 
                 className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
               >
                 About dt
               </Link>
+              <Link 
+                to="/policy" 
+                onClick={delayedAction(() => setIsMenuOpen(false))} 
+                className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
+              >
+                Policy
+              </Link>
+              
               <button 
                 onClick={delayedAction(() => { 
                   setIsMenuOpen(false); 
