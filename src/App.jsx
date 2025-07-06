@@ -222,23 +222,25 @@ function TheDiet4ULanding() {
             </div>
 
             {/* Right Visual Section */}
-            <div className="relative animate-fadeInRight">
-              <FloatingElement delay={0} duration={4}>
-                <div className="bg-gradient-to-br from-emerald-100 via-white to-teal-100 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden">
-                  <div className="bg-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                    <div className="relative mb-6">
-                      <div className="w-full h-64 bg-gradient-to-br from-emerald-200 via-teal-300 to-teal-400 rounded-2xl flex items-center justify-center overflow-hidden relative">
-                        <div className="text-white text-center p-4">
-                          <div className="text-4xl mb-4">🌿</div>
-                          <h3 className="text-2xl font-bold mb-2">Personalized Diet Plans</h3>
-                          <p className="text-emerald-100">Tailored to your unique needs and goals</p>
+           {/* Right Visual Section */}
+              <div className="relative animate-fadeInRight">
+                <FloatingElement delay={0} duration={4}>
+                  <div className="bg-gradient-to-br from-emerald-100 via-white to-teal-100 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden">
+                    <div className="bg-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                      <div className="relative mb-6">
+                        <div className="w-full h-64 bg-gradient-to-br from-emerald-200 via-teal-300 to-teal-400 rounded-2xl flex items-center justify-center overflow-hidden relative">
+                          {/* Replace the text with an image */}
+                          <img 
+                            src="/logo.jpg" // Update this path to your actual image
+                            alt="Healthy diet food"
+                            className="w-full h-full object-cover"
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </FloatingElement>
-            </div>
+                </FloatingElement>
+              </div>
           </div>
         </div>
       </section>
