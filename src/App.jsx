@@ -14,6 +14,24 @@ import ThankYouPage from './components/ThankYouPage';
 import AboutPage from './components/AboutPage';
 import FitnessProgramCards from './components/FitnessProgramCards';
 
+// Utility function for delayed actions
+const delayedAction = (action, delay = 230) => {
+  return (e) => {
+    if (e) {
+      e.preventDefault();
+      // Add temporary visual feedback
+      e.currentTarget.classList.add('button-pressed');
+    }
+    
+    setTimeout(() => {
+      action();
+      if (e) {
+        e.currentTarget.classList.remove('button-pressed');
+      }
+    }, delay);
+  };
+};
+
 // Floating Animation Component
 function FloatingElement({ children, delay = 0, duration = 3 }) {
   return (
@@ -68,36 +86,34 @@ function TheDiet4ULanding() {
   }, []);
 
   const downloadBrochure = () => {
-  const link = document.createElement('a');
-  link.href = '/Brochure.pdf'; 
-  link.download = 'Brochure.pdf'; 
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
+    const link = document.createElement('a');
+    link.href = '/Brochure.pdf'; 
+    link.download = 'Brochure.pdf'; 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
-const programs = [
-  {
-    emoji: "₹200💰",
-    title: "General Enquiry",
-    description: "Ask diet or health-related questions and get expert advice.",
-    color: "from-yellow-400 to-orange-400"
-  },
-  {
-    emoji: "₹500💰",
-    title: "1-Month Diet Plan",
-    description: "Customized diet chart + unlimited queries for one month.",
-    color: "from-green-500 to-emerald-500"
-  },
-  {
-    emoji: "₹1000💰",
-    title: "3-Month Diet Plan",
-    description: "Comprehensive plan with support and reviews for 3 months.",
-    color: "from-purple-500 to-pink-500"
-  }
-];
-
-
+  const programs = [
+    {
+      emoji: "₹200💰",
+      title: "General Enquiry",
+      description: "Ask diet or health-related questions and get expert advice.",
+      color: "from-yellow-400 to-orange-400"
+    },
+    {
+      emoji: "₹500💰",
+      title: "1-Month Diet Plan",
+      description: "Customized diet chart + unlimited queries for one month.",
+      color: "from-green-500 to-emerald-500"
+    },
+    {
+      emoji: "₹1000💰",
+      title: "3-Month Diet Plan",
+      description: "Comprehensive plan with support and reviews for 3 months.",
+      color: "from-purple-500 to-pink-500"
+    }
+  ];
 
   return (
     <div className="min-h-screen w-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex flex-col justify-between overflow-x-hidden relative">
@@ -119,7 +135,7 @@ const programs = [
               <Link to="/programs" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Programs</Link>
               <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About Dt</Link>
               <button
-                onClick={() => navigate("/contact")}
+                onClick={delayedAction(() => navigate("/contact"))}
                 className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-medium"
               >
                 Contact Us
@@ -128,7 +144,7 @@ const programs = [
 
             <button 
               className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={delayedAction(() => setIsMenuOpen(!isMenuOpen))}
             >
               {isMenuOpen ? <X /> : <Menu />}
             </button>
@@ -139,10 +155,10 @@ const programs = [
         {isMenuOpen && (
           <div className="md:hidden bg-white/95 backdrop-blur-md border-t animate-slideDown">
             <div className="px-4 py-2 space-y-2">
-              <Link to="/" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-700 hover:text-emerald-600">Home</Link>
-              <Link to="/programs" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-700 hover:text-emerald-600">Programs</Link>
-              <Link to="/about" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-700 hover:text-emerald-600">About</Link>
-              <button onClick={() => { setIsMenuOpen(false); navigate("/contact"); }} className="w-full text-left bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all font-medium mt-2">
+              <Link to="/" onClick={delayedAction(() => setIsMenuOpen(false))} className="block py-2 text-gray-700 hover:text-emerald-600">Home</Link>
+              <Link to="/programs" onClick={delayedAction(() => setIsMenuOpen(false))} className="block py-2 text-gray-700 hover:text-emerald-600">Programs</Link>
+              <Link to="/about" onClick={delayedAction(() => setIsMenuOpen(false))} className="block py-2 text-gray-700 hover:text-emerald-600">About</Link>
+              <button onClick={delayedAction(() => { setIsMenuOpen(false); navigate("/contact"); })} className="w-full text-left bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all font-medium mt-2">
                 Contact Us
               </button>
             </div>
@@ -183,7 +199,7 @@ const programs = [
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => navigate("/programs")}
+                  onClick={delayedAction(() => navigate("/programs"))}
                   className="group bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center space-x-2"
                 >
                   <span>View Programs</span>
@@ -191,7 +207,7 @@ const programs = [
                 </button>
                 
                 <button
-                  onClick={downloadBrochure}
+                  onClick={delayedAction(downloadBrochure)}
                   className="group border-2 border-emerald-500 text-emerald-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-50 transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center space-x-2"
                 >
                   <span>Download Brochure</span>
@@ -223,25 +239,23 @@ const programs = [
             </div>
 
             {/* Right Visual Section */}
-           {/* Right Visual Section */}
-              <div className="relative animate-fadeInRight">
-                <FloatingElement delay={0} duration={4}>
-                  <div className="bg-gradient-to-br from-emerald-100 via-white to-teal-100 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden">
-                    <div className="bg-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                      <div className="relative mb-6">
-                        <div className="w-full h-64 bg-gradient-to-br from-emerald-200 via-teal-300 to-teal-400 rounded-2xl flex items-center justify-center overflow-hidden relative">
-                          {/* Replace the text with an image */}
-                          <img 
-                            src="/logo.jpg" // Update this path to your actual image
-                            alt="Healthy diet food"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
+            <div className="relative animate-fadeInRight">
+              <FloatingElement delay={0} duration={4}>
+                <div className="bg-gradient-to-br from-emerald-100 via-white to-teal-100 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden">
+                  <div className="bg-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                    <div className="relative mb-6">
+                      <div className="w-full h-64 bg-gradient-to-br from-emerald-200 via-teal-300 to-teal-400 rounded-2xl flex items-center justify-center overflow-hidden relative">
+                        <img 
+                          src="/logo.jpg"
+                          alt="Healthy diet food"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     </div>
                   </div>
-                </FloatingElement>
-              </div>
+                </div>
+              </FloatingElement>
+            </div>
           </div>
         </div>
       </section>
@@ -273,7 +287,12 @@ const programs = [
                   <div className="text-4xl mb-4">{program.emoji}</div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">{program.title}</h3>
                   <p className="text-gray-600 mb-6">{program.description}</p>
-                 
+                  <button 
+                    onClick={delayedAction(() => navigate("/programs"))}
+                    className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                  >
+                    Learn More
+                  </button>
                 </div>
               </div>
             ))}
@@ -293,14 +312,14 @@ const programs = [
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button 
-              onClick={downloadBrochure}
+              onClick={delayedAction(downloadBrochure)}
               className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center"
             >
               <Download className="mr-2 w-5 h-5" />
               Download Brochure
             </button>
             <button 
-              onClick={() => navigate("/programs")}
+              onClick={delayedAction(() => navigate("/programs"))}
               className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-emerald-600 transition-all flex items-center"
             >
               <ArrowRight className="mr-2 w-5 h-5" />
@@ -399,6 +418,12 @@ const programs = [
         .animate-slideDown {
           animation: slideDown 0.3s ease-out;
         }
+
+        .button-pressed {
+          transform: scale(0.98);
+          opacity: 0.9;
+          transition: transform 50ms, opacity 50ms;
+        }
       `}</style>
     </div>
   );
@@ -414,8 +439,6 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thankyou" element={<ThankYouPage />} />
-       
-
       </Routes>
     </Router>
   );
