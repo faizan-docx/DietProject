@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function ContactPage() {
@@ -16,7 +16,13 @@ export default function ContactPage() {
   });
   
   const [errors, setErrors] = useState({});
+  const [isMounted, setIsMounted] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -68,18 +74,18 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="w-screen h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
-      <div className="w-full max-w-4xl h-full bg-white rounded-2xl shadow-xl p-6 md:p-8 overflow-y-auto scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-green-100">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Let's Get to Know You!</h1>
-          <p className="text-lg text-gray-600">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center p-4">
+      <div className={`w-full max-w-4xl bg-white rounded-2xl shadow-xl p-6 md:p-8 transition-all duration-500 ease-in-out transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="text-center mb-8 animate-fadeIn">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Let's Get to Know You!</h1>
+          <p className="text-base md:text-lg text-gray-600">
             Please fill out this quick form so we can understand your health goals and guide you with the best personalized diet plan.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Phone Number */}
-          <div>
+          <div className="animate-fadeInUp delay-100">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Phone Number <span className="text-red-500">*</span>
             </label>
@@ -87,37 +93,35 @@ export default function ContactPage() {
               <div className="flex items-center px-3 bg-gray-100 border border-r-0 border-gray-300 rounded-l-lg">
                 <span className="text-gray-700 font-medium">+91</span>
               </div>
-           <input
-              type="tel"
-              name="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleInputChange}
-              placeholder="Enter your Phone Number"
-              className={`flex-1 px-4 py-3 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800 ${
-                errors.phoneNumber ? 'border-red-500' : 'border-gray-300'
-              }`}
-            />
-
+              <input
+                type="tel"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleInputChange}
+                placeholder="Enter your Phone Number"
+                className={`flex-1 px-4 py-3 border rounded-r-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800 ${
+                  errors.phoneNumber ? 'border-red-500' : 'border-gray-300'
+                }`}
+              />
             </div>
-            {errors.phoneNumber && <p className="text-red-500 text-sm mt-1">{errors.phoneNumber}</p>}
+            {errors.phoneNumber && <p className="text-red-500 text-sm mt-1 animate-shake">{errors.phoneNumber}</p>}
           </div>
 
           {/* First & Last Name */}
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fadeInUp delay-200">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">First Name <span className="text-red-500">*</span></label>
-            <input
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleInputChange}
-              placeholder="Enter your First Name"
-              className={`w-full px-4 py-3 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                errors.firstName ? 'border-red-500' : 'border-gray-300'
-              }`}
-            />
-
-              {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
+              <input
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleInputChange}
+                placeholder="Enter your First Name"
+                className={`w-full px-4 py-3 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                  errors.firstName ? 'border-red-500' : 'border-gray-300'
+                }`}
+              />
+              {errors.firstName && <p className="text-red-500 text-sm mt-1 animate-shake">{errors.firstName}</p>}
             </div>
 
             <div>
@@ -134,7 +138,7 @@ export default function ContactPage() {
           </div>
 
           {/* Address */}
-          <div>
+          <div className="animate-fadeInUp delay-300">
             <label className="block text-sm font-semibold text-gray-700 mb-2">Address</label>
             <input
               type="text"
@@ -147,7 +151,7 @@ export default function ContactPage() {
           </div>
 
           {/* City */}
-          <div>
+          <div className="animate-fadeInUp delay-400">
             <label className="block text-sm font-semibold text-gray-700 mb-2">City</label>
             <input
               type="text"
@@ -160,7 +164,7 @@ export default function ContactPage() {
           </div>
 
           {/* WhatsApp Number */}
-          <div>
+          <div className="animate-fadeInUp delay-500">
             <label className="block text-sm font-semibold text-gray-700 mb-2">WhatsApp Number</label>
             <div className="flex">
               <div className="flex items-center px-3 bg-gray-100 border border-r-0 border-gray-300 rounded-l-lg">
@@ -177,11 +181,11 @@ export default function ContactPage() {
                 }`}
               />
             </div>
-            {errors.whatsappNumber && <p className="text-red-500 text-sm mt-1">{errors.whatsappNumber}</p>}
+            {errors.whatsappNumber && <p className="text-red-500 text-sm mt-1 animate-shake">{errors.whatsappNumber}</p>}
           </div>
 
           {/* Email */}
-          <div>
+          <div className="animate-fadeInUp delay-600">
             <label className="block text-sm font-semibold text-gray-700 mb-2">Email ID</label>
             <input
               type="email"
@@ -193,11 +197,11 @@ export default function ContactPage() {
                 errors.email ? 'border-red-500' : 'border-gray-300'
               }`}
             />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+            {errors.email && <p className="text-red-500 text-sm mt-1 animate-shake">{errors.email}</p>}
           </div>
 
           {/* Gender & DOB */}
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fadeInUp delay-700">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Gender</label>
               <select
@@ -227,7 +231,7 @@ export default function ContactPage() {
           </div>
 
           {/* Remarks */}
-          <div>
+          <div className="animate-fadeInUp delay-800">
             <label className="block text-sm font-semibold text-gray-700 mb-2">Remarks</label>
             <textarea
               name="remarks"
@@ -240,20 +244,69 @@ export default function ContactPage() {
           </div>
 
           {/* Submit */}
-          <div className="pt-2">
+          <div className="pt-2 animate-fadeInUp delay-900">
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold py-4 px-6 rounded-lg hover:from-green-600 hover:to-blue-600 transform hover:scale-105 transition-all duration-200 shadow-lg"
+              className="w-full bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold py-4 px-6 rounded-lg hover:from-green-600 hover:to-blue-600 transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95"
             >
               Submit Enquiry
             </button>
           </div>
 
-          <p className="text-sm text-gray-500 text-center">
+          <p className="text-sm text-gray-500 text-center animate-fadeIn delay-1000">
             Fields marked with <span className="text-red-500">*</span> are required
           </p>
         </form>
       </div>
+
+      {/* Add CSS for animations in the head or a global CSS file */}
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+          from { 
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to { 
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          20%, 60% { transform: translateX(-5px); }
+          40%, 80% { transform: translateX(5px); }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .animate-fadeInUp {
+          animation: fadeInUp 0.6s ease-out forwards;
+          opacity: 0;
+        }
+        
+        .animate-shake {
+          animation: shake 0.4s ease-in-out;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+        .delay-900 { animation-delay: 0.9s; }
+        .delay-1000 { animation-delay: 1s; }
+      `}</style>
     </div>
   );
 }

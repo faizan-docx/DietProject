@@ -125,17 +125,17 @@ function TheDiet4ULanding() {
           </div>
             
             <div className="hidden md:flex space-x-8">
-              <Link to="/" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Home</Link>
-              <Link to="/programs" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Programs</Link>
-              <Link to="/policy" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About dt</Link>
-              <Link to="/policy" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">our policy</Link>
-              <button
-                onClick={delayedAction(() => navigate("/contact"))}
-                className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-medium"
-              >
-                Contact Us
-              </button>
-            </div>
+  <Link to="/" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Home</Link>
+  <Link to="/programs" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Programs</Link>
+  <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About dt</Link>
+  <Link to="/policy" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Policy</Link> {/* Changed from "our policy" */}
+  <button
+    onClick={delayedAction(() => navigate("/contact"))}
+    className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-medium"
+  >
+    Contact Us
+  </button>
+</div>
 
             <button 
               className="md:hidden"
@@ -147,50 +147,53 @@ function TheDiet4ULanding() {
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-md border-t animate-slideDown">
-            <div className="px-4 py-2 space-y-2">
-              <Link 
-                to="/" 
-                onClick={delayedAction(() => setIsMenuOpen(false))} 
-                className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
-              >
-                Home
-              </Link>
-              <Link 
-                to="/OurPrograms" 
-                onClick={delayedAction(() => setIsMenuOpen(false))} 
-                className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
-              >
-                Programs
-              </Link>
-              <Link 
-                to="/AboutPage" 
-                onClick={delayedAction(() => setIsMenuOpen(false))} 
-                className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
-              >
-                About dt
-              </Link>
-              <Link 
-                to="/policy" 
-                onClick={delayedAction(() => setIsMenuOpen(false))} 
-                className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
-              >
-                Policy
-              </Link>
-              
-              <button 
-                onClick={delayedAction(() => { 
-                  setIsMenuOpen(false); 
-                  navigate("/contact"); 
-                })} 
-                className="w-full text-left bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all font-medium mt-2"
-              >
-                Contact Us
-              </button>
-            </div>
-          </div>
-        )}
+       {isMenuOpen && (
+  <div className="md:hidden bg-white/95 backdrop-blur-md border-t animate-slideDown">
+    <div className="px-4 py-2 space-y-2">
+      <Link 
+        to="/" 
+        onClick={delayedAction(() => {
+          setIsMenuOpen(false);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        })} 
+        className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
+      >
+        Home
+      </Link>
+      <Link 
+        to="/programs" 
+        onClick={delayedAction(() => setIsMenuOpen(false))} 
+        className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
+      >
+        Programs
+      </Link>
+      <Link 
+        to="/about" 
+        onClick={delayedAction(() => setIsMenuOpen(false))} 
+        className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
+      >
+        About dt
+      </Link>
+      <Link 
+        to="/policy" 
+        onClick={delayedAction(() => setIsMenuOpen(false))} 
+        className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
+      >
+        Policy {/* Changed from "our policy" to "Policy" */}
+      </Link>
+      
+      <button 
+        onClick={delayedAction(() => { 
+          setIsMenuOpen(false); 
+          navigate("/contact"); 
+        })} 
+        className="w-full text-left bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all font-medium mt-2"
+      >
+        Contact Us
+      </button>
+    </div>
+  </div>
+)}
       </nav>
 
       {/* Hero Section */}
