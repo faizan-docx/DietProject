@@ -150,38 +150,15 @@ function TheDiet4ULanding() {
        {isMenuOpen && (
   <div className="md:hidden bg-white/95 backdrop-blur-md border-t animate-slideDown">
     <div className="px-4 py-2 space-y-2">
-      <Link 
-        to="/" 
-        onClick={delayedAction(() => {
-          setIsMenuOpen(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        })} 
-        className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
-      >
-        Home
-      </Link>
-      <Link 
-        to="/programs" 
-        onClick={delayedAction(() => setIsMenuOpen(false))} 
-        className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
-      >
-        Programs
-      </Link>
-      <Link 
-        to="/about" 
-        onClick={delayedAction(() => setIsMenuOpen(false))} 
-        className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
-      >
-        About dt
-      </Link>
-      <Link 
-        to="/policy" 
-        onClick={delayedAction(() => setIsMenuOpen(false))} 
-        className="block py-2 text-gray-700 hover:text-emerald-600 transition-colors"
-      >
-        Policy {/* Changed from "our policy" to "Policy" */}
-      </Link>
-      
+      <div><Link to="/" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Home</Link>
+              </div> 
+             <div> <Link to="/programs" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Programs</Link>
+             </div>
+             <div>
+              <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About dt</Link>
+              </div>
+             <div> <Link to="/policy" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Policy</Link>
+             </div>
       <button 
         onClick={delayedAction(() => { 
           setIsMenuOpen(false); 
