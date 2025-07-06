@@ -134,7 +134,7 @@ const AboutPage = () => {
                 <Instagram className="w-6 h-6" />
               </a>
               <a
-                href="mailto:info.thediet4u@gmail.com"
+                href="mailto:mail.thediet4u@gmail.com"
                 className="text-green-700 hover:text-green-800 transition"
               >
                 <Mail className="w-6 h-6" />

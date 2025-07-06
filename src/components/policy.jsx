@@ -48,7 +48,7 @@ export default function Policy() {
           <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
             Payments made are non-refundable once services have commenced. However, if cancellation
             is requested within 24 hours of payment and no service has been delivered, refunds can be 
-            discussed by contacting us at <strong className="text-emerald-600">info.thediet4u@gmail.com</strong>.
+            discussed by contacting us at <strong className="text-emerald-600">mail.thediet4u@gmail.com</strong>.
           </p>
         </section>
 
@@ -77,8 +77,8 @@ export default function Policy() {
             <li className="flex items-center text-sm sm:text-base hover:translate-x-1 transition-transform duration-200">
               <Mail className="w-4 h-4 mr-2 text-emerald-500" />
               <strong className="text-gray-700 mr-1">Email:</strong>
-              <a href="mailto:info.thediet4u@gmail.com" className="text-emerald-600 hover:underline">
-                info.thediet4u@gmail.com
+              <a href="mailto:mail.thediet4u@gmail.com" className="text-emerald-600 hover:underline">
+                mail.thediet4u@gmail.com
               </a>
             </li>
             <li className="flex items-center text-sm sm:text-base hover:translate-x-1 transition-transform duration-200">
