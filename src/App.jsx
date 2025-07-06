@@ -13,6 +13,8 @@ import ContactPage from "./components/ContactPage";
 import ThankYouPage from './components/ThankYouPage';
 import AboutPage from './components/AboutPage';
 import FitnessProgramCards from './components/FitnessProgramCards';
+import Policy from "./components/policy"; 
+
 
 // Utility function for delayed actions
 const delayedAction = (action, delay = 230) => {
@@ -331,46 +333,59 @@ function TheDiet4ULanding() {
 
       {/* Enhanced Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
-                <Leaf className="h-8 w-8 text-emerald-500" />
-                <span className="text-2xl font-bold">thediet4u</span>
-              </div>
-              <p className="text-gray-400 mb-4">
-                Personalized nutrition programs designed to transform your health, 
-                appearance, and lifestyle. Expert guidance backed by science.
-              </p>
-              </div>
-            
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Programs</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>Weight Loss</li>
-                <li>Weight Gain</li>
-                <li>Detox & Cleanse</li>
-                <li>PCOS/PCOD</li>
-                <li>Diabetes Management</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link to="/" className="hover:text-emerald-400">Home</Link></li>
-                <li><Link to="/programs" className="hover:text-emerald-400">Programs</Link></li>
-                <li><Link to="/about" className="hover:text-emerald-400">About</Link></li>
-                <li><Link to="/contact" className="hover:text-emerald-400">Contact</Link></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 thediet4u. All rights reserved. | Designed for your wellness journey</p>
-          </div>
+  <div className="max-w-7xl mx-auto">
+    <div className="grid md:grid-cols-4 gap-8">
+      {/* Brand Info */}
+      <div className="col-span-2">
+        <div className="flex items-center space-x-2 mb-4">
+          <Leaf className="h-8 w-8 text-emerald-500" />
+          <span className="text-2xl font-bold">thediet4u</span>
         </div>
-      </footer>
+        <p className="text-gray-400 mb-4 text-sm">
+          Personalized nutrition programs designed to transform your health, 
+          appearance, and lifestyle. Expert guidance backed by science.
+        </p>
+        <p className="text-gray-400 text-sm">
+          © {new Date().getFullYear()} thediet4u •{" "}
+          <Link to="/policy" className="text-green-400 hover:underline">
+            Policies
+          </Link>
+        </p>
+      </div>
+
+      {/* Programs */}
+      <div>
+        <h4 className="text-lg font-semibold mb-4">Programs</h4>
+        <ul className="space-y-2 text-gray-400 text-sm">
+          <li>Weight Loss</li>
+          <li>Weight Gain</li>
+          <li>Detox & Cleanse</li>
+          <li>PCOS/PCOD</li>
+          <li>Diabetes Management</li>
+        </ul>
+      </div>
+
+      {/* Quick Links */}
+      <div>
+        <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+        <ul className="space-y-2 text-gray-400 text-sm">
+          <li><Link to="/" className="hover:text-emerald-400">Home</Link></li>
+          <li><Link to="/programs" className="hover:text-emerald-400">Programs</Link></li>
+          <li><Link to="/about" className="hover:text-emerald-400">About</Link></li>
+          <li><Link to="/contact" className="hover:text-emerald-400">Contact</Link></li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Bottom Bar */}
+    <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+      <p>
+        &copy; 2025 thediet4u. All rights reserved. | Designed for your wellness journey
+      </p>
+    </div>
+  </div>
+</footer>
+
 
       {/* Custom Styles */}
       <style jsx>{`
@@ -439,6 +454,8 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thankyou" element={<ThankYouPage />} />
+        <Route path="/policy" element={<Policy />} />
+
       </Routes>
     </Router>
   );
