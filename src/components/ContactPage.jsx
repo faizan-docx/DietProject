@@ -12,6 +12,8 @@ export default function ContactPage() {
     email: '',
     gender: '',
     dateOfBirth: '',
+    height: '',
+    weight: '',
     remarks: ''
   });
   
@@ -58,6 +60,14 @@ export default function ContactPage() {
 
     if (formData.whatsappNumber && !/^\d{10}$/.test(formData.whatsappNumber)) {
       newErrors.whatsappNumber = 'Please enter a valid 10-digit WhatsApp number';
+    }
+
+    if (formData.height && !/^\d{2,3}(\.\d{1,2})?$/.test(formData.height)) {
+      newErrors.height = 'Please enter a valid height (e.g. 165 or 165.5)';
+    }
+
+    if (formData.weight && !/^\d{2,3}(\.\d{1,2})?$/.test(formData.weight)) {
+      newErrors.weight = 'Please enter a valid weight (e.g. 65 or 65.5)';
     }
 
     setErrors(newErrors);
@@ -230,6 +240,39 @@ export default function ContactPage() {
             </div>
           </div>
 
+          {/* Height & Weight */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fadeInUp delay-750">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Height (cm)</label>
+              <input
+                type="text"
+                name="height"
+                value={formData.height}
+                onChange={handleInputChange}
+                placeholder="Enter your height in cm"
+                className={`w-full px-4 py-3 border border-gray-300 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                  errors.height ? 'border-red-500' : ''
+                }`}
+              />
+              {errors.height && <p className="text-red-500 text-sm mt-1 animate-shake">{errors.height}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Weight (kg)</label>
+              <input
+                type="text"
+                name="weight"
+                value={formData.weight}
+                onChange={handleInputChange}
+                placeholder="Enter your weight in kg"
+                className={`w-full px-4 py-3 border border-gray-300 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
+                  errors.weight ? 'border-red-500' : ''
+                }`}
+              />
+              {errors.weight && <p className="text-red-500 text-sm mt-1 animate-shake">{errors.weight}</p>}
+            </div>
+          </div>
+
           {/* Remarks */}
           <div className="animate-fadeInUp delay-800">
             <label className="block text-sm font-semibold text-gray-700 mb-2">Remarks</label>
@@ -303,6 +346,7 @@ export default function ContactPage() {
         .delay-500 { animation-delay: 0.5s; }
         .delay-600 { animation-delay: 0.6s; }
         .delay-700 { animation-delay: 0.7s; }
+        .delay-750 { animation-delay: 0.75s; }
         .delay-800 { animation-delay: 0.8s; }
         .delay-900 { animation-delay: 0.9s; }
         .delay-1000 { animation-delay: 1s; }
