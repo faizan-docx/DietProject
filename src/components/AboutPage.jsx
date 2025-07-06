@@ -48,9 +48,8 @@ const AboutPage = () => {
                   <div>
                     <h3 className="font-semibold text-gray-800">Location</h3>
                     <p className="text-gray-600">
-                      G782+55X, Mehrauli - Badarpur Rd,<br />
-                      Near Batra Hospital, Block D,<br />
-                      Hamdard Nagar, New Delhi, Delhi 110062
+                       ward no - 45, jail chowk, chandwara <br />
+                       nuzaffarpur, Bihar - 842001
                     </p>
                   </div>
                 </div>
