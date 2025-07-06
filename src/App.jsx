@@ -6,7 +6,7 @@ import {
   Link,
   useNavigate
 } from "react-router-dom";
-import { Menu, X, Leaf, Heart, Target, Users, Star, CheckCircle, ArrowRight, Download, ArrowDown, Sparkles, Award, Zap, Phone, Mail } from 'lucide-react';
+import { Menu, X, Heart, Leaf, Target, Users, Star, CheckCircle, ArrowRight, Download, ArrowDown, Sparkles, Award, Zap, Phone, Mail } from 'lucide-react';
 
 import OurPrograms from './components/OurPrograms'; 
 import ContactPage from "./components/ContactPage";
