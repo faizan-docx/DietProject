@@ -323,15 +323,7 @@ const programs = [
                 Personalized nutrition programs designed to transform your health, 
                 appearance, and lifestyle. Expert guidance backed by science.
               </p>
-              <div className="flex space-x-4">
-                <div className="bg-emerald-600 w-10 h-10 rounded-full flex items-center justify-center">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div className="bg-emerald-600 w-10 h-10 rounded-full flex items-center justify-center">
-                  <Mail className="w-5 h-5" />
-                </div>
               </div>
-            </div>
             
             <div>
               <h4 className="text-lg font-semibold mb-4">Programs</h4>

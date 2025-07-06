@@ -349,7 +349,7 @@ export default function TheDiet4U() {
                 Personalized nutrition programs designed to transform your health, appearance, and lifestyle. 
                 Expert guidance backed by science.
               </p>
-              <div className="flex space-x-4">
+              {/* <div className="flex space-x-4">
                 <div className="bg-emerald-600 w-10 h-10 rounded-full flex items-center justify-center">
                   <Phone className="w-5 h-5" />
                 </div>
@@ -359,7 +359,7 @@ export default function TheDiet4U() {
                 <div className="bg-emerald-600 w-10 h-10 rounded-full flex items-center justify-center">
                   <MessageCircle className="w-5 h-5" />
                 </div>
-              </div>
+              </div> */}
             </div>
             
             <div>
@@ -373,14 +373,7 @@ export default function TheDiet4U() {
               </ul>
             </div>
             
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>About Us</li>
-                <li>Success Stories</li>
-                <li>Contact</li>
-              </ul>
-            </div>
+           
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
