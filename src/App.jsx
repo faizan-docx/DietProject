@@ -32,6 +32,14 @@ const delayedAction = (action, delay = 230) => {
   };
 };
 
+// Scroll to top function
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
+
 // Floating Animation Component
 function FloatingElement({ children, delay = 0, duration = 3 }) {
   return (
@@ -117,25 +125,38 @@ function TheDiet4ULanding() {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-2 group cursor-pointer">
-            <Leaf className="h-8 w-8 text-emerald-500 animate-spin-continuous" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
-              thediet4u
-            </span>
-          </div>
+            <Link 
+              to="/" 
+              className="flex items-center space-x-2 group"
+              onClick={delayedAction(scrollToTop)}
+            >
+              <Leaf className="h-8 w-8 text-emerald-500 animate-spin-continuous" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
+                thediet4u
+              </span>
+            </Link>
             
             <div className="hidden md:flex space-x-8">
-  <Link to="/" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Home</Link>
-  <Link to="/programs" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Programs</Link>
-  <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About dt</Link>
-  <Link to="/policy" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Policy</Link> {/* Changed from "our policy" */}
-  <button
-    onClick={delayedAction(() => navigate("/contact"))}
-    className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-medium"
-  >
-    Contact Us
-  </button>
-</div>
+              <Link 
+                to="/" 
+                onClick={delayedAction(() => {
+                  scrollToTop();
+                  navigate("/");
+                })}
+                className="text-gray-700 hover:text-emerald-600 transition-colors font-medium"
+              >
+                Home
+              </Link>
+              <Link to="/programs" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Programs</Link>
+              <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About dt</Link>
+              <Link to="/policy" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Policy</Link>
+              <button
+                onClick={delayedAction(() => navigate("/contact"))}
+                className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-medium"
+              >
+                Contact Us
+              </button>
+            </div>
 
             <button 
               className="md:hidden"
@@ -147,30 +168,43 @@ function TheDiet4ULanding() {
         </div>
 
         {/* Mobile Menu */}
-       {isMenuOpen && (
-  <div className="md:hidden bg-white/95 backdrop-blur-md border-t animate-slideDown">
-    <div className="px-4 py-2 space-y-2">
-      <div><Link to="/" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Home</Link>
-              </div> 
-             <div> <Link to="/programs" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Programs</Link>
-             </div>
-             <div>
-              <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About dt</Link>
+        {isMenuOpen && (
+          <div className="md:hidden bg-white/95 backdrop-blur-md border-t animate-slideDown">
+            <div className="px-4 py-2 space-y-2">
+              <div>
+                <Link 
+                  to="/" 
+                  onClick={delayedAction(() => {
+                    setIsMenuOpen(false);
+                    scrollToTop();
+                    navigate("/");
+                  })}
+                  className="text-gray-700 hover:text-emerald-600 transition-colors font-medium"
+                >
+                  Home
+                </Link>
               </div>
-             <div> <Link to="/policy" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Policy</Link>
-             </div>
-      <button 
-        onClick={delayedAction(() => { 
-          setIsMenuOpen(false); 
-          navigate("/contact"); 
-        })} 
-        className="w-full text-left bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all font-medium mt-2"
-      >
-        Contact Us
-      </button>
-    </div>
-  </div>
-)}
+              <div>
+                <Link to="/programs" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Programs</Link>
+              </div>
+              <div>
+                <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About dt</Link>
+              </div>
+              <div>
+                <Link to="/policy" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Policy</Link>
+              </div>
+              <button 
+                onClick={delayedAction(() => { 
+                  setIsMenuOpen(false); 
+                  navigate("/contact"); 
+                })} 
+                className="w-full text-left bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all font-medium mt-2"
+              >
+                Contact Us
+              </button>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -294,12 +328,6 @@ function TheDiet4ULanding() {
                   <div className="text-4xl mb-4">{program.emoji}</div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">{program.title}</h3>
                   <p className="text-gray-600 mb-6">{program.description}</p>
-                  {/* <button 
-                    onClick={delayedAction(() => navigate("/programs"))}
-                    className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
-                  >
-                    Learn More
-                  </button> */}
                 </div>
               </div>
             ))}
@@ -337,60 +365,59 @@ function TheDiet4ULanding() {
       </section>
 
       {/* Enhanced Footer */}
-     <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-  <div className="max-w-7xl mx-auto">
-    <div className="grid md:grid-cols-4 gap-8">
-      {/* Brand Info */}
-      <div className="col-span-2">
-        <div className="flex items-center space-x-2 mb-4">
-          <Leaf className="h-8 w-8 text-emerald-500" />
-          <span className="text-2xl font-bold">thediet4u</span>
+      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8">
+            {/* Brand Info */}
+            <div className="col-span-2">
+              <div className="flex items-center space-x-2 mb-4">
+                <Leaf className="h-8 w-8 text-emerald-500" />
+                <span className="text-2xl font-bold">thediet4u</span>
+              </div>
+              <p className="text-gray-400 mb-4 text-sm">
+                Personalized nutrition programs designed to transform your health, 
+                appearance, and lifestyle. Expert guidance backed by science.
+              </p>
+              <p className="text-gray-400 text-sm">
+                © {new Date().getFullYear()} thediet4u •{" "}
+                <Link to="/policy" className="text-green-400 hover:underline">
+                  Policies
+                </Link>
+              </p>
+            </div>
+
+            {/* Programs */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Programs</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li>Weight Loss</li>
+                <li>Weight Gain</li>
+                <li>Detox & Cleanse</li>
+                <li>PCOS/PCOD</li>
+                <li>Diabetes Management</li>
+              </ul>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><Link to="/" className="hover:text-emerald-400">Home</Link></li>
+                <li><Link to="/programs" className="hover:text-emerald-400">Programs</Link></li>
+                <li><Link to="/about" className="hover:text-emerald-400">About</Link></li>
+                <li><Link to="/contact" className="hover:text-emerald-400">Contact</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+            <p>
+              &copy; 2025 thediet4u. All rights reserved. | Designed for your wellness journey
+            </p>
+          </div>
         </div>
-        <p className="text-gray-400 mb-4 text-sm">
-          Personalized nutrition programs designed to transform your health, 
-          appearance, and lifestyle. Expert guidance backed by science.
-        </p>
-        <p className="text-gray-400 text-sm">
-          © {new Date().getFullYear()} thediet4u •{" "}
-          <Link to="/policy" className="text-green-400 hover:underline">
-            Policies
-          </Link>
-        </p>
-      </div>
-
-      {/* Programs */}
-      <div>
-        <h4 className="text-lg font-semibold mb-4">Programs</h4>
-        <ul className="space-y-2 text-gray-400 text-sm">
-          <li>Weight Loss</li>
-          <li>Weight Gain</li>
-          <li>Detox & Cleanse</li>
-          <li>PCOS/PCOD</li>
-          <li>Diabetes Management</li>
-        </ul>
-      </div>
-
-      {/* Quick Links */}
-      <div>
-        <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-        <ul className="space-y-2 text-gray-400 text-sm">
-          <li><Link to="/" className="hover:text-emerald-400">Home</Link></li>
-          <li><Link to="/programs" className="hover:text-emerald-400">Programs</Link></li>
-          <li><Link to="/about" className="hover:text-emerald-400">About</Link></li>
-          <li><Link to="/contact" className="hover:text-emerald-400">Contact</Link></li>
-        </ul>
-      </div>
-    </div>
-
-    {/* Bottom Bar */}
-    <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-      <p>
-        &copy; 2025 thediet4u. All rights reserved. | Designed for your wellness journey
-      </p>
-    </div>
-  </div>
-</footer>
-
+      </footer>
 
       {/* Custom Styles */}
       <style jsx>{`

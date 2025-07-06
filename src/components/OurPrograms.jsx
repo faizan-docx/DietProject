@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';  
+import { Link, useNavigate } from 'react-router-dom';  
 import { 
   Heart, 
   Users, 
@@ -20,12 +20,31 @@ import {
 export default function TheDiet4U() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // Handle logo click
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    if (window.location.pathname === '/') {
+      scrollToTop();
+    } else {
+      navigate('/');
+    }
+  };
 
   const programs = [
     {
@@ -114,13 +133,16 @@ export default function TheDiet4U() {
         scrollY > 50 ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <div className="flex justify-between items-center py-4">
-                  <div className="flex items-center space-x-2 group cursor-pointer">
-          <Leaf className="h-8 w-8 text-emerald-500 animate-spin-continuous" />
-          <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
-            thediet4u
-          </span>
-        </div>
+          <div className="flex justify-between items-center py-4">
+            <div 
+              className="flex items-center space-x-2 group cursor-pointer"
+              onClick={handleLogoClick}
+            >
+              <Leaf className="h-8 w-8 text-emerald-500 animate-spin-continuous" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
+                thediet4u
+              </span>
+            </div>
             
             <div className="hidden md:flex space-x-8">
               <Link 
@@ -145,11 +167,11 @@ export default function TheDiet4U() {
           <div className="md:hidden bg-white/95 backdrop-blur-md border-t">
             <div className="px-4 py-2 space-y-2">
               <Link 
-              to="/contact" 
-              className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all"
-            >
-              Consult Now
-            </Link>
+                to="/contact" 
+                className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all"
+              >
+                Consult Now
+              </Link>
             </div>
           </div>
         )}
@@ -358,17 +380,6 @@ export default function TheDiet4U() {
                 Personalized nutrition programs designed to transform your health, appearance, and lifestyle. 
                 Expert guidance backed by science.
               </p>
-              {/* <div className="flex space-x-4">
-                <div className="bg-emerald-600 w-10 h-10 rounded-full flex items-center justify-center">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div className="bg-emerald-600 w-10 h-10 rounded-full flex items-center justify-center">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div className="bg-emerald-600 w-10 h-10 rounded-full flex items-center justify-center">
-                  <MessageCircle className="w-5 h-5" />
-                </div>
-              </div> */}
             </div>
             
             <div>
@@ -383,14 +394,14 @@ export default function TheDiet4U() {
             </div>
             
             <div>
-                         <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-                         <ul className="space-y-2 text-gray-400">
-                           <li><Link to="/" className="hover:text-emerald-400">Home</Link></li>
-                           <li><Link to="/programs" className="hover:text-emerald-400">Programs</Link></li>
-                           <li><Link to="/about" className="hover:text-emerald-400">About</Link></li>
-                           <li><Link to="/contact" className="hover:text-emerald-400">Contact</Link></li>
-                         </ul>
-                       </div>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link to="/" className="hover:text-emerald-400">Home</Link></li>
+                <li><Link to="/programs" className="hover:text-emerald-400">Programs</Link></li>
+                <li><Link to="/about" className="hover:text-emerald-400">About</Link></li>
+                <li><Link to="/contact" className="hover:text-emerald-400">Contact</Link></li>
+              </ul>
+            </div>
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
@@ -399,7 +410,5 @@ export default function TheDiet4U() {
         </div>
       </footer>
     </div>
-    
   );
-  
 }
