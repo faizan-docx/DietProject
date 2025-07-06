@@ -38,7 +38,7 @@ export default function TheDiet4U() {
     {
       emoji: "🏋️‍♂️",
       title: "Weight Gain Program",
-      description: "Struggling to gain healthy weight or muscle? This plan is for you.",
+      description: "Struggling to gain healthy weight or muscle?? This plan is for you.",
       features: ["High-protein, high-calorie meal plans", "Muscle-gain support", "Gut-friendly food combinations", "Fitness-focused nutrition"],
       color: "from-blue-500 to-purple-500"
     },
@@ -101,7 +101,7 @@ export default function TheDiet4U() {
 
   const whyChooseUs = [
     { icon: Target, text: "Personalized plans based on your goals, health history, and preferences" },
-    { icon: Award, text: "Backed by Dt. Kaneez Fatima, M.Sc. Nutrition & Dietetics, Jamia Hamdard" },
+    { icon: Award, text: "Backed by Dt. Kaneez Fatima, M.Sc. Nutrition & Dietetics,From Jamia Hamdard" },
     { icon: MessageCircle, text: "One-on-one support via WhatsApp & email" },
     { icon: Shield, text: "Visual guides, shopping lists & lifestyle coaching" },
     { icon: Users, text: "300+ happy clients and real transformations" }
