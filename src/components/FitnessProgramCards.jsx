@@ -27,7 +27,7 @@ const FitnessProgramCards = () => {
       title: "Weight Loss Program",
       subtitle: "Lose weight the healthy way",
       icon: Target,
-      // image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop&crop=center",
+       image: "/weightLoss.jpg", // Update this path to your actual image
       durations: ["30 Days", "60 Days", "90 Days"],
       rating: 4.8,
       participants: "2.5k+"
@@ -37,7 +37,7 @@ const FitnessProgramCards = () => {
       title: "Muscle Building",
       subtitle: "Build lean muscle mass",
       icon: Dumbbell,
-      // image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=250&fit=crop&crop=center",
+      image: "/muscleBuild.jpg",
       durations: ["45 Days", "60 Days", "90 Days"],
       rating: 4.9,
       participants: "1.8k+"
@@ -47,7 +47,7 @@ const FitnessProgramCards = () => {
       title: "Heart Healthy Diet",
       subtitle: "Cardiovascular wellness focus",
       icon: Heart,
-      // image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&h=250&fit=crop&crop=center",
+      image: "/heartHealthy.jpg",
       durations: ["30 Days", "60 Days"],
       rating: 4.7,
       participants: "3.2k+"
@@ -57,7 +57,7 @@ const FitnessProgramCards = () => {
       title: "Energy Boost",
       subtitle: "Increase daily energy levels",
       icon: Zap,
-      // image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=250&fit=crop&crop=center",
+      image: "/energyBoost.png",
       durations: ["21 Days", "45 Days", "60 Days"],
       rating: 4.6,
       participants: "1.5k+"
@@ -67,20 +67,10 @@ const FitnessProgramCards = () => {
       title: "Family Nutrition",
       subtitle: "Healthy eating for the whole family",
       icon: Users,
-      // image: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=400&h=250&fit=crop&crop=center",
+      image: "/familyNutrition.jpg",
       durations: ["30 Days", "90 Days"],
       rating: 4.8,
       participants: "2.1k+"
-    },
-    {
-      id: 6,
-      title: "Premium Transformation",
-      subtitle: "Complete lifestyle makeover",
-      icon: Award,
-      // image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=250&fit=crop&crop=center",
-      durations: ["60 Days", "90 Days", "180 Days"],
-      rating: 5.0,
-      participants: "980+"
     }
   ];
 
@@ -279,9 +269,9 @@ const FitnessProgramCards = () => {
                   </div>
 
                   {/* Call to Action */}
-                  <button className="w-full mt-6 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                  {/* <button className="w-full mt-6 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                     Get Started
-                  </button>
+                  </button> */}
                 </div>
               </div>
             );

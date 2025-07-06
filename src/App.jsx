@@ -116,7 +116,7 @@ function TheDiet4ULanding() {
             <div className="hidden md:flex space-x-8">
               <Link to="/" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Home</Link>
               <Link to="/programs" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">Programs</Link>
-              <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About</Link>
+              <Link to="/about" className="text-gray-700 hover:text-emerald-600 transition-colors font-medium">About Dt</Link>
               <button
                 onClick={() => navigate("/contact")}
                 className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all font-medium"
