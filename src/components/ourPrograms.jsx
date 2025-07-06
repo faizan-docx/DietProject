@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   Heart, 
   Users, 
+  Leaf,
   CheckCircle, 
   Phone, 
   Mail, 
@@ -373,7 +374,15 @@ export default function TheDiet4U() {
               </ul>
             </div>
             
-           
+            <div>
+                         <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+                         <ul className="space-y-2 text-gray-400">
+                           <li><Link to="/" className="hover:text-emerald-400">Home</Link></li>
+                           <li><Link to="/programs" className="hover:text-emerald-400">Programs</Link></li>
+                           <li><Link to="/about" className="hover:text-emerald-400">About</Link></li>
+                           <li><Link to="/contact" className="hover:text-emerald-400">Contact</Link></li>
+                         </ul>
+                       </div>
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
