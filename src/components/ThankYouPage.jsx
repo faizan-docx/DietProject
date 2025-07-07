@@ -105,7 +105,7 @@ export default function ThankYouPage() {
               <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
               </svg>
-              Call: +91 88778 16387
+              Call: +91 74610 29189
             </a>
             <span className="hidden sm:block text-gray-300">|</span>
             <a href="mailto:support@example.com" className="text-emerald-600 font-medium hover:text-emerald-700 transition-colors flex items-center">
