@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
+
+import { db } from '../Firebase';
+import { collection, addDoc, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
+
+
+
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     phoneNumber: '',
@@ -89,57 +97,56 @@ export default function ContactPage() {
   };
 
   const initiatePayment = async () => {
-    // Determine amount based on consultation type
-    let amount = 0;
-    let description = '';
-    
-    switch(formData.consultationType) {
-      case 'general':
-        amount = 20000; // ₹200 in paise
-        description = 'General Diet Consultation';
-        break;
-      case 'monthly':
-        amount = 50000; // ₹500 in paise
-        description = 'Monthly Diet Plan with Follow-up';
-        break;
-      case 'quarterly':
-        amount = 100000; // ₹1000 in paise
-        description = '3-Month Comprehensive Diet Plan';
-        break;
-      default:
-        amount = 0;
-    }
+  let amount = 0;
+  let description = '';
 
-    const options = {
-      key: 'YOUR_RAZORPAY_KEY_ID', // Replace with your actual Razorpay key
-      amount: amount,
-      currency: 'INR',
-      name: 'Diet Consultation Services',
-      description: description,
-      image: 'https://your-logo-url.com/logo.png', // Your company logo
-      handler: function(response) {
-        // Handle successful payment
-        console.log('Payment successful:', response);
-        console.log('Form data:', formData);
-        navigate('/thankyou');
-      },
-      prefill: {
-        name: `${formData.firstName} ${formData.lastName}`,
-        email: formData.email,
-        contact: formData.phoneNumber
-      },
-      notes: {
-        address: formData.address,
-        consultation_type: formData.consultationType
-      },
-      theme: {
-        color: '#4CAF50' // Green theme
-      }
-    };
+  switch (formData.consultationType) {
+    case 'general': amount = 20000; description = 'General Diet Consultation'; break;
+    case 'monthly': amount = 50000; description = 'Monthly Diet Plan'; break;
+    case 'quarterly': amount = 100000; description = '3-Month Comprehensive Plan'; break;
+    default: return;
+  }
 
-    const rzp = new window.Razorpay(options);
-    rzp.open();
+  // Step 1: Save data to Firebase with status 'pending'
+  const docRef = await addDoc(collection(db, 'users'), {
+    ...formData,
+    paymentStatus: 'pending',
+    createdAt: serverTimestamp()
+
+  });
+
+  // Step 2: Open Razorpay
+  const options = {
+    key: 'rzp_live_kZNMpdKwdQ8g0G', // Replace with your live/test key
+    amount,
+    currency: 'INR',
+    name: 'TheDiet4U',
+    description,
+    handler: async function (response) {
+      // Step 3: On payment success, update paymentStatus
+      await updateDoc(doc(db, 'users', docRef.id), {
+        paymentStatus: 'completed',
+        razorpay_payment_id: response.razorpay_payment_id
+      });
+
+      // Step 4: Redirect user
+      navigate('/thankyou');
+    },
+    prefill: {
+      name: `${formData.firstName} ${formData.lastName}`,
+      email: formData.email,
+      contact: formData.phoneNumber
+    },
+    notes: {
+      firebaseId: docRef.id,
+      consultation_type: formData.consultationType
+    },
+    theme: { color: '#4CAF50' }
   };
+
+  const rzp = new window.Razorpay(options);
+  rzp.open();
+};
 
   const handleSubmit = (e) => {
     e.preventDefault();

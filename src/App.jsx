@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Admin from './components/Admin';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -500,6 +502,8 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thankyou" element={<ThankYouPage />} />
         <Route path="/policy" element={<Policy />} />
+        <Route path="/admin" element={<Admin />} />
+
       </Routes>
     </Router>
   );
