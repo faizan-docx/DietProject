@@ -386,7 +386,7 @@ function TheDiet4ULanding() {
               </p>
             </div>
 
-            {/* Programs */}
+            {/* Programs
             <div>
               <h4 className="text-lg font-semibold mb-4">Programs</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
@@ -396,7 +396,7 @@ function TheDiet4ULanding() {
                 <li>PCOS/PCOD</li>
                 <li>Diabetes Management</li>
               </ul>
-            </div>
+            </div> */}
 
             {/* Quick Links */}
             <div>

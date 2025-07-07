@@ -381,7 +381,7 @@ export default function TheDiet4U() {
                 Expert guidance backed by science.
               </p>
             </div>
-            
+{/*             
             <div>
               <h4 className="text-lg font-semibold mb-4">Programs</h4>
               <ul className="space-y-2 text-gray-400">
@@ -391,7 +391,7 @@ export default function TheDiet4U() {
                 <li>PCOS/PCOD</li>
                 <li>Diabetes Management</li>
               </ul>
-            </div>
+            </div> */}
             
             <div>
               <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
