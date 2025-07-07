@@ -14,7 +14,8 @@ export default function ContactPage() {
     dateOfBirth: '',
     height: '',
     weight: '',
-    remarks: ''
+    remarks: '',
+    consultationType: '' // Added new field for payment options
   });
   
   const [errors, setErrors] = useState({});
@@ -23,7 +24,16 @@ export default function ContactPage() {
 
   useEffect(() => {
     setIsMounted(true);
-    return () => setIsMounted(false);
+    // Load Razorpay script
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      setIsMounted(false);
+      document.body.removeChild(script);
+    };
   }, []);
 
   const handleInputChange = (e) => {
@@ -54,6 +64,10 @@ export default function ContactPage() {
       newErrors.firstName = 'First name is required';
     }
 
+    if (!formData.consultationType) {
+      newErrors.consultationType = 'Please select a consultation type';
+    }
+
     if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
@@ -74,12 +88,64 @@ export default function ContactPage() {
     return Object.keys(newErrors).length === 0;
   };
 
+  const initiatePayment = async () => {
+    // Determine amount based on consultation type
+    let amount = 0;
+    let description = '';
+    
+    switch(formData.consultationType) {
+      case 'general':
+        amount = 20000; // ₹200 in paise
+        description = 'General Diet Consultation';
+        break;
+      case 'monthly':
+        amount = 50000; // ₹500 in paise
+        description = 'Monthly Diet Plan with Follow-up';
+        break;
+      case 'quarterly':
+        amount = 100000; // ₹1000 in paise
+        description = '3-Month Comprehensive Diet Plan';
+        break;
+      default:
+        amount = 0;
+    }
+
+    const options = {
+      key: 'YOUR_RAZORPAY_KEY_ID', // Replace with your actual Razorpay key
+      amount: amount,
+      currency: 'INR',
+      name: 'Diet Consultation Services',
+      description: description,
+      image: 'https://your-logo-url.com/logo.png', // Your company logo
+      handler: function(response) {
+        // Handle successful payment
+        console.log('Payment successful:', response);
+        console.log('Form data:', formData);
+        navigate('/thankyou');
+      },
+      prefill: {
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        contact: formData.phoneNumber
+      },
+      notes: {
+        address: formData.address,
+        consultation_type: formData.consultationType
+      },
+      theme: {
+        color: '#4CAF50' // Green theme
+      }
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log('Form submitted:', formData);
-      navigate('/thankyou');
+      initiatePayment();
     }
   };
 
@@ -94,6 +160,7 @@ export default function ContactPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Your existing form fields remain exactly the same */}
           {/* Phone Number */}
           <div className="animate-fadeInUp delay-100">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -273,8 +340,89 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Remarks */}
+          {/* Consultation Type - Payment Options */}
           <div className="animate-fadeInUp delay-800">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Consultation Type <span className="text-red-500">*</span>
+            </label>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* General Query Option */}
+              <div 
+                className={`border rounded-lg p-4 cursor-pointer transition-all ${
+                  formData.consultationType === 'general' 
+                    ? 'border-green-500 bg-green-50 ring-2 ring-green-200' 
+                    : 'border-gray-300 hover:border-green-300'
+                }`}
+                onClick={() => setFormData(prev => ({...prev, consultationType: 'general'}))}
+              >
+                <div className="flex items-center">
+                  <input
+                    type="radio"
+                    name="consultationType"
+                    checked={formData.consultationType === 'general'}
+                    onChange={() => {}}
+                    className="h-4 w-4 text-green-600 focus:ring-green-500"
+                  />
+                  <label className="ml-3 block text-sm font-medium text-gray-700">
+                    General Query - ₹200
+                  </label>
+                </div>
+                <p className="mt-1 text-xs text-gray-500">One-time consultation for general health queries</p>
+              </div>
+
+              {/* Monthly Plan Option */}
+              <div 
+                className={`border rounded-lg p-4 cursor-pointer transition-all ${
+                  formData.consultationType === 'monthly' 
+                    ? 'border-green-500 bg-green-50 ring-2 ring-green-200' 
+                    : 'border-gray-300 hover:border-green-300'
+                }`}
+                onClick={() => setFormData(prev => ({...prev, consultationType: 'monthly'}))}
+              >
+                <div className="flex items-center">
+                  <input
+                    type="radio"
+                    name="consultationType"
+                    checked={formData.consultationType === 'monthly'}
+                    onChange={() => {}}
+                    className="h-4 w-4 text-green-600 focus:ring-green-500"
+                  />
+                  <label className="ml-3 block text-sm font-medium text-gray-700">
+                    Monthly Plan - ₹500
+                  </label>
+                </div>
+                <p className="mt-1 text-xs text-gray-500">Personalized diet chart for 1 month with follow-up</p>
+              </div>
+
+              {/* 3-Month Plan Option */}
+              <div 
+                className={`border rounded-lg p-4 cursor-pointer transition-all ${
+                  formData.consultationType === 'quarterly' 
+                    ? 'border-green-500 bg-green-50 ring-2 ring-green-200' 
+                    : 'border-gray-300 hover:border-green-300'
+                }`}
+                onClick={() => setFormData(prev => ({...prev, consultationType: 'quarterly'}))}
+              >
+                <div className="flex items-center">
+                  <input
+                    type="radio"
+                    name="consultationType"
+                    checked={formData.consultationType === 'quarterly'}
+                    onChange={() => {}}
+                    className="h-4 w-4 text-green-600 focus:ring-green-500"
+                  />
+                  <label className="ml-3 block text-sm font-medium text-gray-700">
+                    3-Month Plan - ₹1000
+                  </label>
+                </div>
+                <p className="mt-1 text-xs text-gray-500">Comprehensive 3-month diet plan with regular follow-ups</p>
+              </div>
+            </div>
+            {errors.consultationType && <p className="text-red-500 text-sm mt-1 animate-shake">{errors.consultationType}</p>}
+          </div>
+
+          {/* Remarks */}
+          <div className="animate-fadeInUp delay-850">
             <label className="block text-sm font-semibold text-gray-700 mb-2">Remarks</label>
             <textarea
               name="remarks"
@@ -286,13 +434,13 @@ export default function ContactPage() {
             />
           </div>
 
-          {/* Submit */}
+          {/* Submit Button */}
           <div className="pt-2 animate-fadeInUp delay-900">
             <button
               type="submit"
               className="w-full bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold py-4 px-6 rounded-lg hover:from-green-600 hover:to-blue-600 transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95"
             >
-              Submit Enquiry
+              Proceed to Payment
             </button>
           </div>
 
@@ -302,7 +450,7 @@ export default function ContactPage() {
         </form>
       </div>
 
-      {/* Add CSS for animations in the head or a global CSS file */}
+      {/* Animation styles remain exactly the same */}
       <style jsx global>{`
         @keyframes fadeIn {
           from { opacity: 0; }
@@ -348,6 +496,7 @@ export default function ContactPage() {
         .delay-700 { animation-delay: 0.7s; }
         .delay-750 { animation-delay: 0.75s; }
         .delay-800 { animation-delay: 0.8s; }
+        .delay-850 { animation-delay: 0.85s; }
         .delay-900 { animation-delay: 0.9s; }
         .delay-1000 { animation-delay: 1s; }
       `}</style>
