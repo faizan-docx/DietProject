@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { sendEmailConfirmation, sendEmailCancellation } from '../utils/emailService';
+
+
 
 
 
@@ -107,30 +110,40 @@ export default function ContactPage() {
     default: return;
   }
 
-  // Step 1: Save data to Firebase with status 'pending'
   const docRef = await addDoc(collection(db, 'users'), {
     ...formData,
     paymentStatus: 'pending',
     createdAt: serverTimestamp()
-
   });
 
-  // Step 2: Open Razorpay
   const options = {
-    key: 'rzp_live_kZNMpdKwdQ8g0G', // Replace with your live/test key
+    key: 'rzp_live_kZNMpdKwdQ8g0G',
     amount,
     currency: 'INR',
     name: 'TheDiet4U',
     description,
     handler: async function (response) {
-      // Step 3: On payment success, update paymentStatus
+      // ✅ Payment Success
       await updateDoc(doc(db, 'users', docRef.id), {
         paymentStatus: 'completed',
         razorpay_payment_id: response.razorpay_payment_id
       });
 
-      // Step 4: Redirect user
+      await sendEmailConfirmation(formData);  // send full formData, not custom object
+
       navigate('/thankyou');
+    },
+    modal: {
+      ondismiss: async function () {
+        // ❌ Payment Cancelled
+        await updateDoc(doc(db, 'users', docRef.id), {
+          paymentStatus: 'cancelled'
+        });
+
+        await sendEmailCancellation(formData);  // <-- Use correct cancellation email
+
+        alert('Payment was cancelled.');
+      }
     },
     prefill: {
       name: `${formData.firstName} ${formData.lastName}`,
@@ -147,6 +160,9 @@ export default function ContactPage() {
   const rzp = new window.Razorpay(options);
   rzp.open();
 };
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
