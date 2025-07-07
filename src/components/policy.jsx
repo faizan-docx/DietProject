@@ -84,13 +84,13 @@ export default function Policy() {
             <li className="flex items-center text-sm sm:text-base hover:translate-x-1 transition-transform duration-200">
               <Phone className="w-4 h-4 mr-2 text-emerald-500" />
               <strong className="text-gray-700 mr-1">WhatsApp:</strong>
-              <span className="text-gray-600">+91 88778 16387</span>
+              <span className="text-gray-600">+91-74610 29189</span>
             </li>
             <li className="flex items-start text-sm sm:text-base hover:translate-x-1 transition-transform duration-200">
               <MapPin className="w-4 h-4 mr-2 text-emerald-500 mt-0.5" />
               <div>
                 <strong className="text-gray-700 mr-1">Location:</strong>
-                <span className="text-gray-600">ward no - 45, jail chowk, chandwara
+                <span className="text-gray-600">Ward no - 45, jail chowk, chandwara
 nuzaffarpur, Bihar - 842001</span>
               </div>
             </li>
