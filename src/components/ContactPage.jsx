@@ -117,7 +117,7 @@ export default function ContactPage() {
   });
 
   const options = {
-    key: 'rzp_live_kZNMpdKwdQ8g0G',
+    key: import.meta.env.VITE_RAZORPAY_KEY, // Your Razorpay key
     amount,
     currency: 'INR',
     name: 'TheDiet4U',
@@ -129,7 +129,8 @@ export default function ContactPage() {
         razorpay_payment_id: response.razorpay_payment_id
       });
 
-      await sendEmailConfirmation(formData);  // send full formData, not custom object
+     await sendEmailConfirmation(formData, response.razorpay_payment_id, amount);
+  
 
       navigate('/thankyou');
     },

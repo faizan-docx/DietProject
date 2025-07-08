@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export default function ThankYouPage() {
-  const navigate = useNavigate();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
     return () => setIsMounted(false);
   }, []);
+
+  const handleGoBack = () => {
+    // Simulated navigation back
+    console.log('Going back to previous page');
+  };
+
+  const handleGoHome = () => {
+    // Simulated navigation to home
+    console.log('Going to home page');
+  };
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50 px-4 py-8">
@@ -76,7 +84,7 @@ export default function ThankYouPage() {
         {/* Action Buttons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-in delay-400">
           <button 
-            onClick={() => navigate(-1)}
+            onClick={handleGoBack}
             className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,7 +93,7 @@ export default function ThankYouPage() {
             Fill Another Form
           </button>
           <button 
-            onClick={() => navigate('/')}
+            onClick={handleGoHome}
             className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,8 +103,21 @@ export default function ThankYouPage() {
           </button>
         </div>
 
+        {/* Payment Reminder */}
+        <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded-lg animate-fade-in delay-500">
+          <p className="text-amber-800 font-medium flex items-center justify-center">
+            <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+            </svg>
+            Payment Reminder
+          </p>
+          <p className="text-sm text-amber-700 mt-2">
+            Please send your payment screenshot to WhatsApp number: +91 74610 29189
+          </p>
+        </div>
+
         {/* Contact Info */}
-        <div className="mt-8 pt-5 border-t border-gray-200 animate-fade-in delay-500">
+        <div className="mt-8 pt-5 border-t border-gray-200 animate-fade-in delay-600">
           <p className="text-sm text-gray-500 mb-2">
             Need immediate assistance?
           </p>
@@ -154,6 +175,7 @@ export default function ThankYouPage() {
         .delay-300 { animation-delay: 0.3s; }
         .delay-400 { animation-delay: 0.4s; }
         .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
       `}</style>
     </div>
   );
