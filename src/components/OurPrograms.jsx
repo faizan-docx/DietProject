@@ -306,7 +306,7 @@ export default function TheDiet4U() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              🌟 Why Choose theDiet4U?
+              🌟 Why to Choose theDiet4U?
             </h2>
           </div>
 
@@ -346,7 +346,7 @@ export default function TheDiet4U() {
             📞 Ready to Start Your Journey?
           </h2>
           <p className="text-xl text-emerald-100 mb-8">
-            Choose health. Choose YOU. ✨
+            Choose health. Choose YOU. 
           </p>
           
           <div className="text-emerald-100">
