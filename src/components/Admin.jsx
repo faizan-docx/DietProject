@@ -8,7 +8,7 @@ export default function Admin() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState('');
 
-  const correctPassword = 'admin123'; // Change this in production!
+  const correctPassword = 'Kan@eez3058'; // Change this in production!
 
   const handleLogin = () => {
     if (password === correctPassword) {
@@ -33,7 +33,7 @@ export default function Admin() {
     return (
       <div className="h-screen flex items-center justify-center bg-gray-100">
         <div className="p-6 bg-white rounded shadow-md">
-          <h2 className="text-lg font-bold mb-4">Admin Login</h2>
+          <h2 className="text-lg font-bold mb-4">Admin Login Page</h2>
           <input
             type="password"
             placeholder="Enter admin password"
