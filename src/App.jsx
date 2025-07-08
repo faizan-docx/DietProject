@@ -408,16 +408,19 @@ function TheDiet4ULanding() {
                 <li><Link to="/programs" className="hover:text-emerald-400">Programs</Link></li>
                 <li><Link to="/about" className="hover:text-emerald-400">About</Link></li>
                 <li><Link to="/contact" className="hover:text-emerald-400">Contact</Link></li>
+                
               </ul>
             </div>
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-            <p>
-              &copy; 2025 thediet4u. All rights reserved. | Designed for your wellness journey
-            </p>
-          </div>
+                <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>
+                  &copy; 2025 thediet4u. All rights reserved. | Designed for your wellness journey | <Link to="/admin" className="hover:text-emerald-400 ">Dt. Kaneez Fatima</Link>
+                </p>
+              </div>
+
+
         </div>
       </footer>
 
