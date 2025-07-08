@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 const serviceId = "service_6lng57k";
 const templateConfirm = "template_c6u46tl";
 const templateFailure = "template_3jezidp";
-const publicKey = "LWZn9UcUqKY8bAEWu";
+const publicKey = "8uw5pAurTRSvHASaR";
 
 // Confirmation
 export const sendEmailConfirmation = async () => {
