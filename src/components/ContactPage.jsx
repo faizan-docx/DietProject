@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sendEmailConfirmation } from '../utils/emailService';
+import { sendEmailConfirmation, sendEmailFailure } from '../utils/emailService';
+
 
 
 
@@ -117,7 +118,7 @@ export default function ContactPage() {
   });
 
   const options = {
-    key: import.meta.env.VITE_RAZORPAY_KEY, // Your Razorpay key
+    key: "rzp_test_YourActualKeyHere", // Replace with your real Razorpay key
     amount,
     currency: 'INR',
     name: 'TheDiet4U',
@@ -129,9 +130,7 @@ export default function ContactPage() {
         razorpay_payment_id: response.razorpay_payment_id
       });
 
-     await sendEmailConfirmation(formData, response.razorpay_payment_id, amount);
-  
-
+      await sendEmailConfirmation();
       navigate('/thankyou');
     },
     modal: {
@@ -140,6 +139,8 @@ export default function ContactPage() {
         await updateDoc(doc(db, 'users', docRef.id), {
           paymentStatus: 'cancelled'
         });
+
+        await sendEmailFailure(); // ✅ Send failure email
 
         alert('Payment was cancelled.');
       }
@@ -159,6 +160,7 @@ export default function ContactPage() {
   const rzp = new window.Razorpay(options);
   rzp.open();
 };
+
 
 
 
