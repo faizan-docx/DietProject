@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sendEmailConfirmation, sendEmailCancellation } from '../utils/emailService';
+import { sendEmailConfirmation } from '../utils/emailService';
 
 
 
@@ -140,8 +140,6 @@ export default function ContactPage() {
           paymentStatus: 'cancelled'
         });
 
-        await sendEmailCancellation(formData);  // <-- Use correct cancellation email
-
         alert('Payment was cancelled.');
       }
     },
@@ -160,6 +158,7 @@ export default function ContactPage() {
   const rzp = new window.Razorpay(options);
   rzp.open();
 };
+
 
 
 
