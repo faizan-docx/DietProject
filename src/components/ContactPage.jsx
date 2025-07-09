@@ -118,7 +118,7 @@ export default function ContactPage() {
   });
 
   const options = {
-    key: "rzp_test_YourActualKeyHere", // Replace with your real Razorpay key
+    key: "rzp_live_kZNMpdKwdQ8g0G", // Replace with your real Razorpay key
     amount,
     currency: 'INR',
     name: 'TheDiet4U',
